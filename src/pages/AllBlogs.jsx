@@ -12,7 +12,9 @@ const AllBlogs = function () {
   useEffect(function () {
     async function fetchBlogs() {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/blogs");
+        const response = await axios.get(
+          "https://blogapp-backend-vx02.onrender.com/api/v1/blogs"
+        );
         setBlogs(response.data);
       } catch (error) {
         console.log(error);
