@@ -22,7 +22,7 @@ const AddBlogs = function () {
       tags: tags
         .split(",")
         .map(() => tags.trim())
-        .filter((tag) => tags),
+        .filter((tag) => tags !== ""),
     };
     console.log(newBlog);
     try {
