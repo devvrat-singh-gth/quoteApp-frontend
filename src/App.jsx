@@ -4,6 +4,7 @@ import AboutPage from "./pages/About";
 import AllBlogs from "./pages/AllBlogs";
 import AddBlogs from "./pages//AddBlog";
 import SingleBlog from "./pages/SingleBlog";
+import EditBlog from "./pages/EditBlog";
 import { ToastContainer } from "react-toastify";
 
 import Navbar from "./components/Navbar";
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/blogs" element={<AllBlogs />} />
             <Route path="/add-blog" element={<AddBlogs />} />
             <Route path="/blog/:id" element={<SingleBlog />} />
+            <Route path="/edit-blog/:id" element={<EditBlog />} />
           </Routes>
         </div>
         <ToastContainer />

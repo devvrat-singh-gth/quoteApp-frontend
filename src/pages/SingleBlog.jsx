@@ -28,6 +28,10 @@ const SingleBlog = function () {
     },
     [id]
   );
+  function editBlog(id) {
+    navigate(`/edit-blog/${id}`);
+  }
+
   async function deleteBlog(id) {
     try {
       await axios.delete(
@@ -90,12 +94,21 @@ const SingleBlog = function () {
                   })}
                 </span>
               </div>
-              <button
-                className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors"
-                onClick={() => deleteBlog(_id)}
-              >
-                Delete Blog
-              </button>
+              <div className="flex items-center gap-4 mt-4">
+                <button
+                  className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700 transition-colors"
+                  onClick={() => editBlog(_id)}
+                >
+                  Edit Blog
+                </button>
+
+                <button
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors"
+                  onClick={() => deleteBlog(_id)}
+                >
+                  Delete Blog
+                </button>
+              </div>
             </div>
             {/* Tags */}
             {tags && tags.length > 0 && (
