@@ -21,8 +21,8 @@ const AddBlogs = function () {
       author: author,
       tags: tags
         .split(",")
-        .map(() => tags.trim())
-        .filter((tag) => tags !== ""),
+        .map(() => tag.trim())
+        .filter((tag) => tag !== ""),
     };
     console.log(newBlog);
     try {
