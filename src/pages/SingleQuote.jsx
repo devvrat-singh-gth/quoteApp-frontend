@@ -66,8 +66,8 @@ const SingleQuote = () => {
       try {
         // Build URL with entered password if available
         const url = enteredPassword
-          ? `http://localhost:8080/api/v1/quotes/${id}?password=${enteredPassword}&includePassword=true`
-          : `http://localhost:8080/api/v1/quotes/${id}?includePassword=true`;
+          ? `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}?password=${enteredPassword}&includePassword=true`
+          : `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}?includePassword=true`;
 
         const response = await axios.get(url);
         setQuote(response.data);
@@ -101,9 +101,12 @@ const SingleQuote = () => {
   async function handlePasswordSubmit(inputPassword) {
     try {
       // Try fetching quote with the given password to validate
-      await axios.get(`http://localhost:8080/api/v1/quotes/${id}`, {
-        params: { password: inputPassword },
-      });
+      await axios.get(
+        `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
+        {
+          params: { password: inputPassword },
+        }
+      );
 
       // Password valid - proceed
       setShowPwdModal(false);
@@ -123,9 +126,12 @@ const SingleQuote = () => {
 
   async function handleConfirmDelete() {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/quotes/${id}`, {
-        params: { password: enteredPassword },
-      });
+      await axios.delete(
+        `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
+        {
+          params: { password: enteredPassword },
+        }
+      );
       toast.success("Quote Deleted!");
       navigate("/quotes");
     } catch (error) {

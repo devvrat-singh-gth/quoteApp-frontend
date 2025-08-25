@@ -100,7 +100,9 @@ const HomePage = ({ navHeight, menuOpen }) => {
   useEffect(() => {
     async function fetchRecentQuotes() {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/quotes");
+        const response = await axios.get(
+          "https://quoteapp-backend-1.onrender.com/api/v1/quotes"
+        );
         setRecentQuotes(response.data.slice(0, 10));
       } catch (error) {
         console.error(error);

@@ -33,7 +33,7 @@ const EditQuote = function () {
       async function fetchQuote() {
         try {
           const response = await axios.get(
-            `http://localhost:8080/api/v1/quotes/${id}?includePassword=true`
+            `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}?includePassword=true`
           );
           const quote = response.data;
           setTitle(quote.title);
@@ -78,7 +78,7 @@ const EditQuote = function () {
     try {
       setIsLoading(true);
       await axios.put(
-        `http://localhost:8080/api/v1/quotes/${id}`,
+        `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
         updatedQuote
       );
       toast.success("Quote updated successfully!");

@@ -36,7 +36,7 @@ const AddQuote = function () {
       setIsLoading(true);
 
       const response = await axios.post(
-        "http://localhost:8080/api/v1/quotes",
+        "https://quoteapp-backend-1.onrender.com/api/v1/quotes",
         newQuote
       );
 

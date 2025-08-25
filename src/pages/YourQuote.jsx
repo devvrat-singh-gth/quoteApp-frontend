@@ -10,7 +10,9 @@ const YourQuotes = () => {
   useEffect(() => {
     const fetchQuotes = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/quotes");
+        const response = await axios.get(
+          "https://quoteapp-backend-1.onrender.com/api/v1/quotes"
+        );
 
         // ✅ Get locally stored quote IDs
         const savedIds = JSON.parse(localStorage.getItem("myQuotes") || "[]");

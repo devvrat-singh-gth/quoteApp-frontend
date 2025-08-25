@@ -11,7 +11,9 @@ const AllQuotes = function () {
   useEffect(function () {
     async function fetchQuotes() {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/quotes");
+        const response = await axios.get(
+          "https://quoteapp-backend-1.onrender.com/api/v1/quotes"
+        );
         setQuotes(response.data);
       } catch (error) {
         console.log(error);
