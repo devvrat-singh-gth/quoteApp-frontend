@@ -1,10 +1,18 @@
+/* Layout */
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+nav {
+  transition: all 0.3s ease-in-out;
+  z-index: 50; /* make sure menu is above other content */
+}
+
+/* Logo hover + animation */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -33,10 +41,207 @@
   }
 }
 
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Card & misc */
 .card {
   padding: 2em;
 }
-
 .read-the-docs {
   color: #888;
+}
+
+/* 🌈 Animated Cyberpunk Gradient Background */
+@keyframes cyberpunkGradient {
+  0% {
+    background-position: 0% 50%;
+    background-image: linear-gradient(
+      270deg,
+      #ff00c8,
+      #00ffe7,
+      #8e2de2,
+      #ff079c,
+      #3a0ca3,
+      #ec094aad
+    );
+  }
+  25% {
+    background-position: 50% 50%;
+    background-image: linear-gradient(
+      270deg,
+      #00ffe7,
+      #8e2de2,
+      #ff079c,
+      #3a0ca3,
+      #ff00c8,
+      #ec094aad
+    );
+  }
+  50% {
+    background-position: 100% 50%;
+    background-image: linear-gradient(
+      270deg,
+      #8e2de2,
+      #ff079c,
+      #3a0ca3,
+      #ff00c8,
+      #00ffe7,
+      #ec094aad
+    );
+  }
+  75% {
+    background-position: 50% 50%;
+    background-image: linear-gradient(
+      270deg,
+      #ff079c,
+      #3a0ca3,
+      #ff00c8,
+      #00ffe7,
+      #8e2de2,
+      #ec094aad
+    );
+  }
+  100% {
+    background-position: 0% 50%;
+    background-image: linear-gradient(
+      270deg,
+      #3a0ca3,
+      #ff00c8,
+      #00ffe7,
+      #8e2de2,
+      #ff079c,
+      #ec094aad
+    );
+  }
+}
+
+.animated-gradient-bg {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 200px;
+  animation: cyberpunkGradient 12s ease infinite;
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+    270deg,
+    #ff00c8,
+    #00ffe7,
+    #8e2de2,
+    #ff079c,
+    #3a0ca3,
+    #ec094aad
+  );
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px rgba(255, 0, 200, 0.3), 0 0 40px rgba(0, 255, 231, 0.2);
+  padding: 3rem 2rem;
+  color: white;
+
+  position: relative;
+  will-change: background-position;
+  box-sizing: border-box; /* important */
+}
+
+/* ✨ Optional: Text Glow for Contrast */
+.gradient-text-glow {
+  text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #ff00c8, 0 0 16px #00ffe7;
+}
+
+/* Responsive typography */
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto 1rem auto;
+}
+
+/* Recent quotes or content wrapper */
+section {
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Responsive grid example */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@keyframes neon-border {
+  0% {
+    border-color: rgb(255, 0, 123);
+    box-shadow: 0 0 5px #f0f, 0 0 10px #f0f;
+  }
+  50% {
+    border-color: rgba(0, 190, 190, 0.812);
+    box-shadow: 0 0 5px #0ff, 0 0 20px #0ff;
+  }
+  100% {
+    border-color: rgb(17, 0, 255);
+    box-shadow: 0 0 5px #f0f, 0 0 10px #f0f;
+  }
+}
+
+.animate-neon-border {
+  animation: neon-border 1.5s linear infinite;
+}
+
+/* Buttons example */
+button,
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.bg-amber-300 {
+  background-color: #facc15;
+  color: white;
+}
+
+.bg-amber-300:hover {
+  background-color: #d4a10f;
+}
+
+.bg-amber-500 {
+  background-color: #ca8a04;
+  color: white;
+}
+
+.bg-amber-500:hover {
+  background-color: #a16f03;
 }
