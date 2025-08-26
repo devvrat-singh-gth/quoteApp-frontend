@@ -183,8 +183,10 @@ const SingleQuote = () => {
 
             <div className="flex justify-between items-center text-gray-600 mb-6">
               <div>
-                <span className="font-medium">By {author}</span>
-                <span className="mx-2">.</span>
+                <h6 className="font-bold">
+                  By <span> {author}</span>
+                </h6>
+                <span className="font-semibold">Created At </span>
                 <span>
                   {new Date(createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
@@ -215,9 +217,9 @@ const SingleQuote = () => {
                 {tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full mr-2"
+                    className="inline-block bg-blue-100 hover:bg-purple-100 text-blue-500 hover:text-purple-900 text-sm px-3 py-1 rounded-full mr-2"
                   >
-                    {tag}
+                    #{tag}
                   </span>
                 ))}
               </div>
@@ -225,7 +227,10 @@ const SingleQuote = () => {
           </div>
 
           <div className="prose max-w-none">
-            <div className="text-gray-700 leading-relaxed whitespace-pre-line text-lg">
+            <div className="text-blue-700 leading-relaxed whitespace-pre-line text-2xl font-serif">
+              <h6 className="mt-4 mb-4 text-xl font-semibold text-gray-700">
+                Quote Explanation By Author!!!!!!
+              </h6>
               {content}
             </div>
           </div>

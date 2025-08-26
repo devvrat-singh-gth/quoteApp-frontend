@@ -6,7 +6,7 @@ body,
   margin: 0;
   padding: 0;
 }
-
+  
 nav {
   transition: all 0.3s ease-in-out;
   z-index: 50; /* make sure menu is above other content */

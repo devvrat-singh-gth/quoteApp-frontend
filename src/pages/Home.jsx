@@ -131,7 +131,7 @@ const HomePage = ({ navHeight, menuOpen }) => {
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full pt-6">
             {/* Left Side: Welcome Content */}
             <div className="flex-1 flex flex-col items-center text-center lg:items-start lg:text-left mt-6">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 text-red-400 gradient-text-glow">
+              <h1 className="text-3xl md:text-6xl font-bold mb-4 text-red-400 gradient-text-glow">
                 Welcome to <span className="text-lime-200">QuoteVault</span>
               </h1>
 
@@ -147,8 +147,8 @@ const HomePage = ({ navHeight, menuOpen }) => {
                 <h2 className="font-bold text-3xl md:text-4xl font-serif mb-2 px-10 underline italic gradient-text-glow text-center lg:text-left">
                   Quote of the Day
                 </h2>
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg w-full">
-                  <QuoteCard quote={recentQuotes[0]} />
+                <div className="bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-md rounded-lg p-6 shadow-lg w-full">
+                  <QuoteCard quote={recentQuotes[1]} />
                 </div>
               </div>
             )}
