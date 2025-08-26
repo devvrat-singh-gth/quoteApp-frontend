@@ -17,7 +17,6 @@ const QuoteCard = ({ quote }) => {
         rounded-[25px] border-4 border-black p-6 shadow-md transition-all duration-300 ease-in-out 
         hover:shadow-xl hover:bg-indigo-100 cursor-pointer"
       >
-        {/* Quote */}
         <h3 className="text-xl sm:text-2xl italic mb-2 font-semibold font-handwriting break-words leading-snug">
           {quote.title}
         </h3>
@@ -26,7 +25,6 @@ const QuoteCard = ({ quote }) => {
           Click to learn about quote
         </p>
 
-        {/* Author & Date */}
         <div className="mt-auto text-sm font-handwriting mt-4">
           <p className="mt-2">
             <span className="font-semibold group-hover:underline">By</span>{" "}
@@ -39,7 +37,6 @@ const QuoteCard = ({ quote }) => {
           </p>
         </div>
 
-        {/* Tags */}
         {quote.tags && quote.tags.length > 0 && (
           <div className="mt-3">
             {quote.tags.map((tag, index) => (
