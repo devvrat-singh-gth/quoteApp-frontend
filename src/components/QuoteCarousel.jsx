@@ -8,9 +8,9 @@ const QuoteCarousel = ({ quotes }) => {
 
   const updateCardsToShow = () => {
     const width = window.innerWidth;
-    if (width >= 1024) setCardsToShow(3); // large screens
-    else if (width >= 768) setCardsToShow(2); // tablets
-    else setCardsToShow(1); // mobile
+    if (width >= 1024) setCardsToShow(3);
+    else if (width >= 768) setCardsToShow(2);
+    else setCardsToShow(1);
   };
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const QuoteCarousel = ({ quotes }) => {
     );
   };
 
-  // Auto slide after 15 seconds of inactivity
   useEffect(() => {
     const resetTimer = () => {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -54,31 +53,31 @@ const QuoteCarousel = ({ quotes }) => {
   const hasMultipleQuotes = quotes.length > 1;
 
   return (
-    <div className="relative flex items-center justify-center max-w-full mx-auto">
-      {/* Prev button: show only if multiple quotes */}
+    <div className="relative max-w-full mx-auto flex flex-col items-center lg:flex-row lg:items-center lg:justify-center">
+      {/* Prev Button - Top on small screens, left on lg+ */}
       {hasMultipleQuotes && (
         <button
           onClick={prev}
           aria-label="Previous quotes"
-          className="z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition mr-4"
+          className="z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition mb-4 lg:mb-0 lg:mr-4"
         >
           &#8592;
         </button>
       )}
 
-      {/* Carousel container */}
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 transition-all flex-1">
+      {/* Quote Cards */}
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 transition-all w-full">
         {visibleQuotes.map((quote, idx) => (
           <QuoteCard key={idx} quote={quote} />
         ))}
       </div>
 
-      {/* Next button: show only if multiple quotes */}
+      {/* Next Button - Bottom on small screens, right on lg+ */}
       {hasMultipleQuotes && (
         <button
           onClick={next}
           aria-label="Next quotes"
-          className="z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition ml-4"
+          className="z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition mt-4 lg:mt-0 lg:ml-4"
         >
           &#8594;
         </button>
