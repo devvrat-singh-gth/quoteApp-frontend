@@ -53,35 +53,41 @@ const QuoteCarousel = ({ quotes }) => {
   const hasMultipleQuotes = quotes.length > 1;
 
   return (
-    <div className="relative max-w-full mx-auto flex flex-col items-center lg:flex-row lg:items-center lg:justify-center">
-      {/* Prev Button - Top on small screens, left on lg+ */}
-      {hasMultipleQuotes && (
-        <button
-          onClick={prev}
-          aria-label="Previous quotes"
-          className="z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition mb-4 lg:mb-0 lg:mr-4"
-        >
-          &#8592;
-        </button>
-      )}
+    <div className="relative w-full max-w-screen-xl mx-auto px-4">
+      {/* Navigation Arrows (responsive placement) */}
+      <div className="flex items-center justify-between mb-4 lg:mb-6">
+        {hasMultipleQuotes && (
+          <button
+            onClick={prev}
+            aria-label="Previous quotes"
+            className="bg-white dark:bg-gray-800 p-2 lg:p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition text-lg lg:text-2xl"
+          >
+            &#8592;
+          </button>
+        )}
 
-      {/* Quote Cards */}
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 transition-all w-full">
-        {visibleQuotes.map((quote, idx) => (
-          <QuoteCard key={idx} quote={quote} />
-        ))}
+        {hasMultipleQuotes && (
+          <button
+            onClick={next}
+            aria-label="Next quotes"
+            className="bg-white dark:bg-gray-800 p-2 lg:p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition text-lg lg:text-2xl"
+          >
+            &#8594;
+          </button>
+        )}
       </div>
 
-      {/* Next Button - Bottom on small screens, right on lg+ */}
-      {hasMultipleQuotes && (
-        <button
-          onClick={next}
-          aria-label="Next quotes"
-          className="z-10 bg-white dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition mt-4 lg:mt-0 lg:ml-4"
-        >
-          &#8594;
-        </button>
-      )}
+      {/* Quote Cards Carousel */}
+      <div className="flex justify-center items-stretch gap-6 overflow-x-auto pb-4">
+        {visibleQuotes.map((quote, idx) => (
+          <div
+            key={idx}
+            className="flex-none w-[85vw] sm:w-[45vw] lg:w-[30vw] transition-all duration-300"
+          >
+            <QuoteCard quote={quote} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
