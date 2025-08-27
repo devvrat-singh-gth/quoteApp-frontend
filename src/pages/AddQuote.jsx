@@ -40,7 +40,6 @@ const AddQuote = function () {
         newQuote
       );
 
-      // ✅ Save quote ID locally to mark this device's submission
       saveToLocalStorage(response.data._id);
 
       toast("New Quote Added!");
@@ -55,18 +54,18 @@ const AddQuote = function () {
 
   return (
     <main className="max-w-2xl py-4 mx-auto">
-      <h1 className="flex items-center justify-center gap-2 text-4xl text-gray-700 font-bold mb-8 text-center dark:bg-gray-100">
+      <h1 className="flex items-center justify-center gap-2 text-4xl font-bold mb-8 text-center text-gray-700 dark:text-gray-200">
         Share a New Quote <SquarePen width={32} height={32} />
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-white-rounded-lg shadow-md p-6"
+        className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800 transition-colors duration-300"
       >
         {/* Quote */}
         <div className="mb-6">
           <label
             htmlFor="quote"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Quote*
           </label>
@@ -74,7 +73,7 @@ const AddQuote = function () {
             type="text"
             id="quote"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
             placeholder="Enter the main quote here"
             value={quote}
             onChange={(e) => setQuote(e.target.value)}
@@ -85,7 +84,7 @@ const AddQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="author"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Author*
           </label>
@@ -93,7 +92,7 @@ const AddQuote = function () {
             type="text"
             id="author"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
             placeholder="Author of the Quote"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
@@ -104,7 +103,7 @@ const AddQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="quoteExplanation"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Quote Explanation*
           </label>
@@ -112,7 +111,7 @@ const AddQuote = function () {
             id="quoteExplanation"
             required
             rows={8}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
             placeholder="Explain the meaning or background of the quote..."
             value={quoteExplanation}
             onChange={(e) => setQuoteExplanation(e.target.value)}
@@ -123,7 +122,7 @@ const AddQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="tags"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Tags*
           </label>
@@ -131,7 +130,7 @@ const AddQuote = function () {
             type="text"
             id="tags"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
             placeholder="Enter tags separated by commas (e.g., motivation, life)"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
@@ -142,7 +141,7 @@ const AddQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Password (optional)
           </label>
@@ -150,12 +149,12 @@ const AddQuote = function () {
             type="password"
             id="password"
             name="password"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
             placeholder="Set a password to protect this quote"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <small className="text-sm text-gray-500">
+          <small className="text-sm text-gray-500 dark:text-gray-400">
             [Current PWD: {password || "None"}]
           </small>
         </div>

@@ -18,7 +18,6 @@ const EditQuote = function () {
   const [existingPassword, setExistingPassword] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Pre-fill form with quote data
   useEffect(() => {
     if (location.state?.quote) {
       const quote = location.state.quote;
@@ -27,8 +26,8 @@ const EditQuote = function () {
       setAuthor(quote.author);
       setTags(quote.tags.join(", "));
       setExistingPassword(quote.password || null);
-      setPassword(""); // Reset current password input
-      setNewPassword(""); // Reset new password input
+      setPassword("");
+      setNewPassword("");
     } else {
       async function fetchQuote() {
         try {
@@ -55,7 +54,6 @@ const EditQuote = function () {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // Only require current password if quote currently has a password
     if (existingPassword && !password.trim()) {
       toast.error("Please enter your current password to update the quote.");
       return;
@@ -69,52 +67,58 @@ const EditQuote = function () {
         .split(",")
         .map((tag) => tag.trim())
         .filter((tag) => tag !== ""),
-      // If no existing password, don't send current password
-      ...(existingPassword ? { password: password.trim() } : {}),
-      // Send new password only if provided, otherwise don't send
-      ...(newPassword.trim() ? { newPassword: newPassword.trim() } : {}),
+      password:
+        newPassword.trim() !== ""
+          ? newPassword.trim()
+          : password.trim() || undefined,
     };
 
     try {
       setIsLoading(true);
+
       await axios.put(
         `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
-        updatedQuote
+        updatedQuote,
+        {
+          headers: {
+            Authorization: password.trim(),
+          },
+        }
       );
+
       toast.success("Quote updated successfully!");
-      navigate(`/quote/${id}`);
+      navigate("/your-quotes");
     } catch (error) {
-      console.log(error);
-      toast.error("Error updating quote. Please try again.");
+      toast.error("Failed to update quote. Check password or try again.");
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <main className="max-w-2xl py-10 mx-auto">
-      <h1 className="flex items-center justify-center gap-2 text-4xl text-gray-700 font-bold mb-8 text-center dark:bg-gray-100">
+    <main className="max-w-2xl py-4 mx-auto">
+      <h1 className="flex items-center justify-center gap-2 text-4xl font-bold mb-8 text-center text-gray-700 dark:text-gray-200">
         Edit Quote <SquarePen width={32} height={32} />
       </h1>
+
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-lg shadow-md p-6"
+        className="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800 transition-colors duration-300"
       >
         {/* Title */}
         <div className="mb-6">
           <label
             htmlFor="title"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            Title*
+            Quote*
           </label>
           <input
             type="text"
             id="title"
-            name="title"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-            placeholder="Enter your Quote Title"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Edit your quote"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -124,17 +128,16 @@ const EditQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="author"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Author*
           </label>
           <input
             type="text"
             id="author"
-            name="author"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-            placeholder="Author of the quote"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Edit author name"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
@@ -144,17 +147,16 @@ const EditQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="content"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            Quote Content*
+            Quote Explanation*
           </label>
           <textarea
             id="content"
-            name="content"
             required
             rows={8}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-            placeholder="Write the quote here..."
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Edit quote explanation"
             value={content}
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
@@ -164,41 +166,34 @@ const EditQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="tags"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Tags*
           </label>
           <input
             type="text"
             id="tags"
-            name="tags"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-            placeholder="e.g., motivation, happiness, life"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Edit tags separated by commas"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
           />
         </div>
 
-        {/* Current Password */}
+        {/* Password */}
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            Current Password{existingPassword ? "*" : " (Not required)"}
+            Current Password{existingPassword ? "*" : " (optional)"}
           </label>
           <input
             type="password"
             id="password"
-            name="password"
-            required={!!existingPassword}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-            placeholder={
-              existingPassword
-                ? "Enter your current password to edit"
-                : "No current password set"
-            }
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Enter current password to authorize changes"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -208,22 +203,18 @@ const EditQuote = function () {
         <div className="mb-6">
           <label
             htmlFor="newPassword"
-            className="block text-base font-medium text-gray-700 mb-2"
+            className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             New Password (optional)
           </label>
           <input
             type="password"
             id="newPassword"
-            name="newPassword"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent"
-            placeholder="Set or change password to protect this quote"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
+            placeholder="Set a new password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <small className="text-sm text-gray-500">
-            [Current Password: {existingPassword || "None"}]
-          </small>
         </div>
 
         {/* Submit */}
@@ -233,15 +224,10 @@ const EditQuote = function () {
             disabled={isLoading}
             className="relative inline-block px-8 py-3 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300 disabled:opacity-50"
           >
-            {/* Glowing animated background */}
             <span className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-600 to-fuchsia-500 rounded-lg blur opacity-80 group-hover:opacity-100 transition duration-300"></span>
-
-            {/* Animated border */}
             <span className="absolute top-0 left-0 w-full h-full border-2 border-transparent group-hover:border-pink-500 rounded-lg animate-neon-border"></span>
-
-            {/* Button text */}
             <span className="relative z-10">
-              {isLoading ? "Updating..." : "Update Quote"}
+              {isLoading ? "Saving..." : "Save Changes"}
             </span>
           </button>
         </div>

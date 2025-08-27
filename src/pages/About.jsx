@@ -3,11 +3,11 @@ import Footer from "../components/Footer";
 const AboutPage = function () {
   return (
     <>
-      <main className="min-h-screen px-6 py-12 bg-white dark:bg-gray-900">
-        <h1 className="text-5xl text-gray-700 dark:text-gray-200 font-bold mb-6">
+      <main className="min-h-screen px-6 py-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <h1 className="text-5xl font-bold mb-6 text-gray-700 dark:text-gray-200">
           About
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
+        <p className="text-lg max-w-3xl leading-relaxed text-gray-600 dark:text-gray-300">
           Welcome to QuoteVault, your trusted source for inspiring, thoughtful,
           and powerful quotes shared by a passionate community of users.
           <br />

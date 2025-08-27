@@ -5,8 +5,16 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* 🔧 Fix horizontal scroll that can cause footer issues */
 }
-  
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 nav {
   transition: all 0.3s ease-in-out;
   z-index: 50; /* make sure menu is above other content */
@@ -24,6 +32,10 @@ nav {
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #efff11e3);
+}
+/* Optional smoother transition */
+.carousel-track {
+  transition: transform 0.7s ease-in-out;
 }
 
 @keyframes logo-spin {
@@ -75,8 +87,8 @@ nav {
       #00ffe7,
       #8e2de2,
       #ff079c,
-      #3a0ca3,
-      #ec094aad
+      #0ca337,
+      #0dec09da
     );
   }
   25% {
@@ -85,10 +97,10 @@ nav {
       270deg,
       #00ffe7,
       #8e2de2,
-      #ff079c,
-      #3a0ca3,
+      #83ff07,
+      #0ca337,
       #ff00c8,
-      #ec094aad
+      #0dec09da
     );
   }
   50% {
@@ -97,10 +109,10 @@ nav {
       270deg,
       #8e2de2,
       #ff079c,
-      #3a0ca3,
-      #ff00c8,
+      #0ca337,
+      #83ff07,
       #00ffe7,
-      #ec094aad
+      #0dec09da
     );
   }
   75% {
@@ -108,23 +120,23 @@ nav {
     background-image: linear-gradient(
       270deg,
       #ff079c,
-      #3a0ca3,
-      #ff00c8,
+      #0ca337,
+      #83ff07,
       #00ffe7,
       #8e2de2,
-      #ec094aad
+      #0dec09da
     );
   }
   100% {
     background-position: 0% 50%;
     background-image: linear-gradient(
       270deg,
-      #3a0ca3,
+      #0ca337,
       #ff00c8,
       #00ffe7,
       #8e2de2,
-      #ff079c,
-      #ec094aad
+      #83ff07,
+      #0dec09da
     );
   }
 }
@@ -143,7 +155,7 @@ nav {
     #8e2de2,
     #ff079c,
     #3a0ca3,
-    #ec094aad
+    #0dec09da
   );
   border-radius: 0.5rem;
   box-shadow: 0 0 20px rgba(255, 0, 200, 0.3), 0 0 40px rgba(0, 255, 231, 0.2);

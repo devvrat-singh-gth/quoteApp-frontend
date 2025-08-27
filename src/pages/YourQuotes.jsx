@@ -36,10 +36,12 @@ const YourQuotes = () => {
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">Your Collection</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Your Collection
+        </h1>
         <Link
           to="/add-quote"
-          className="relative inline-block px-6 py-3 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"
+          className="relative inline-block px-8 py-6 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"
         >
           <span className="absolute inset-0 bg-gradient-to-r from-black via-pink-800 to-purple-900 rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
           <span className="relative z-10 gradient-text-glow">New Quote</span>

@@ -15,11 +15,15 @@ const QuoteCard = ({ quote }) => {
       <article
         className="group h-full flex flex-col justify-between bg-white text-black 
         rounded-[25px] border-4 border-black p-6 shadow-md transition-all duration-300 ease-in-out 
-        hover:shadow-xl hover:bg-indigo-100 cursor-pointer"
+        hover:shadow-xl hover:bg-green-100 cursor-pointer"
       >
-        <h3 className="text-xl sm:text-2xl italic mb-2 font-semibold font-handwriting break-words leading-snug">
+        <h3
+          className="text-xl sm:text-2xl italic mb-2 font-semibold break-words leading-snug"
+          style={{ fontFamily: "'Dancing Script', cursive" }}
+        >
           {quote.title}
         </h3>
+
         <div className="mt-auto text-sm font-handwriting mt-6">
           <p className="text-left self-start mt-2 text-sm text-gray-600 font-semibold transition-colors duration-300 group-hover:text-purple-700 w-full">
             Click to learn about quote

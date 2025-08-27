@@ -27,12 +27,12 @@ const AllQuotes = function () {
   }, []);
 
   return (
-    <main>
+    <main className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="text-center mb-8 py-5">
-        <h1 className="text-5xl text-gray-700 font-extrabold mb-12 dark:bg-gray-100">
+        <h1 className="text-5xl font-extrabold mb-12 text-gray-700 dark:text-gray-200">
           All Quotes
         </h1>
-        <p className="text-gray-600 font-bold text-4xl mb-6">
+        <p className="text-gray-600 dark:text-gray-300 font-bold text-4xl mb-6">
           Explore all the inspiring thoughts shared by the community!
         </p>
       </div>
@@ -50,7 +50,9 @@ const AllQuotes = function () {
           </div>
         ) : (
           <div className="text-center py-25">
-            <p className="text-gray-500 mb-4">No quotes available yet.</p>
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
+              No quotes available yet.
+            </p>
             <Link
               to="/add-quote"
               className="relative inline-block px-6 py-3 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"

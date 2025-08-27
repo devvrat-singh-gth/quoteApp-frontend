@@ -1,26 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Moon, Sun } from "lucide-react";
+import { Si4Chan } from "react-icons/si";
 
-const Navbar = ({ onHeightChange, menuOpen, setMenuOpen }) => {
+const Navbar = ({
+  onHeightChange,
+  menuOpen,
+  setMenuOpen,
+  darkMode,
+  setDarkMode,
+}) => {
   const headerRef = useRef(null);
-
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("darkMode") === "true";
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    const html = document.documentElement;
-    if (darkMode) {
-      html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-    }
-    localStorage.setItem("darkMode", darkMode);
-  }, [darkMode]);
 
   useEffect(() => {
     if (headerRef.current) {
@@ -32,55 +22,69 @@ const Navbar = ({ onHeightChange, menuOpen, setMenuOpen }) => {
   return (
     <header
       ref={headerRef}
-      className="bg-gradient-to-r from-black via-purple-800 to-pink-800 text-white shadow-lg backdrop-blur-sm bg-opacity-80 border-b border-purple-500/30 z-50 relative"
+      className="bg-gradient-to-r from-black via-green-800 to-lime-500 text-white shadow-lg backdrop-blur-sm bg-opacity-80 border-b border-purple-500/30 z-50 relative"
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="text-3xl font-serif">
-            Quote App
+          <Link to="/" className="flex items-center gap-2 text-3xl font-serif">
+            <Si4Chan className="text-lime-400" />
+            QuoteVault
           </Link>
-
           {/* Desktop nav */}
           <nav className="hidden md:flex space-x-6 items-center">
             {/* Dark mode toggle */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-md hover:bg-purple-200 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-md hover:bg-green-500 bg-opacity-30 dark:hover:bg-gray-700 transition-colors"
               title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
               aria-label="Toggle Dark Mode"
             >
               {darkMode ? (
-                <Sun className="text-yellow-400" size={20} />
+                <Sun className="text-yellow-300" size={25} />
               ) : (
-                <Moon className="text-gray-300" size={20} />
+                <Moon className="text-gray-300" size={25} />
               )}
             </button>
 
             {/* Links */}
-            <Link to="/" className="text-xl font-semibold hover:text-pink-400">
+            <Link
+              to="/"
+              className="relative text-xl font-semibold gradient-text-glow 
+                hover:text-green-800
+                after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-800 
+                after:transition-all after:duration-300 hover:after:w-full"
+            >
               Home
             </Link>
             <Link
               to="/about"
-              className="text-xl font-semibold hover:text-pink-400"
+              className="relative text-xl font-semibold gradient-text-glow 
+                hover:text-green-800
+                after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-800 
+                after:transition-all after:duration-300 hover:after:w-full"
             >
               About
             </Link>
             <Link
               to="/your-quotes"
-              className="text-xl font-semibold hover:text-pink-400"
+              className="relative text-xl font-semibold gradient-text-glow 
+                hover:text-green-800
+                after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-800 
+                after:transition-all after:duration-300 hover:after:w-full"
             >
               Your Quotes
             </Link>
             <Link
               to="/quotes"
-              className="text-xl font-semibold hover:text-pink-400"
+              className="relative text-xl font-semibold gradient-text-glow 
+                hover:text-green-800
+                after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-green-800 
+                after:transition-all after:duration-300 hover:after:w-full"
             >
               All Quotes
             </Link>
           </nav>
-
           {/* MOBILE: Dark mode toggle + menu button */}
           <div className="flex items-center md:hidden space-x-4">
             {/* Dark mode toggle */}
