@@ -5,8 +5,9 @@ const QuoteCarousel = ({ quotes }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(1);
   const timerRef = useRef(null);
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
 
-  // Responsive cards to show
   const updateCardsToShow = () => {
     const width = window.innerWidth;
     if (width >= 1024) setCardsToShow(3);
@@ -20,16 +21,16 @@ const QuoteCarousel = ({ quotes }) => {
     return () => window.removeEventListener("resize", updateCardsToShow);
   }, []);
 
-  // Circular increment/decrement
   const next = () => {
     setStartIndex((prev) => (prev + 1) % quotes.length);
   };
 
   const prev = () => {
-    setStartIndex((prev) => (prev - 1 + quotes.length) % quotes.length);
+    setStartIndex((prev) =>
+      prev === 0 ? quotes.length - 1 : (prev - 1) % quotes.length
+    );
   };
 
-  // Auto slide after 15 seconds of inactivity
   useEffect(() => {
     const resetTimer = () => {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -41,65 +42,79 @@ const QuoteCarousel = ({ quotes }) => {
     events.forEach((event) => window.addEventListener(event, resetTimer));
 
     return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      clearTimeout(timerRef.current);
       events.forEach((event) => window.removeEventListener(event, resetTimer));
     };
-  }, [cardsToShow]);
+  }, []);
 
-  // Duplicate quotes for infinite looping
-  const extendedQuotes = [...quotes, ...quotes];
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
 
-  // Calculate translateX percent (negative) to slide cards smoothly
-  // Each card width percentage based on cardsToShow
-  const cardWidthPercent = 100 / cardsToShow;
-  const translateX = -(startIndex * cardWidthPercent);
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) next();
+    else if (diff < -50) prev();
+  };
 
   const hasMultipleQuotes = quotes.length > 1;
 
+  // Determine width per card in %
+  const cardWidthPercent = 100 / cardsToShow;
+  const translateX = -(startIndex * cardWidthPercent);
+
   return (
-    <div className="relative w-full max-w-screen-xl mx-auto px-4 flex items-center">
-      {/* Prev Button */}
+    <div
+      className="relative overflow-hidden max-w-full mx-auto"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {hasMultipleQuotes && (
         <button
           onClick={prev}
           aria-label="Previous quotes"
-          className="z-10 bg-pink-600 dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition mr-4"
+          className="z-10 bg-pink-600 dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition
+          absolute top-1/2 left-2 transform -translate-y-1/2 sm:static"
         >
           &#8592;
         </button>
       )}
 
-      {/* Carousel Container */}
-      <div className="overflow-hidden flex-1" style={{ maxWidth: "100%" }}>
+      <div className="w-full overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-700 ease-in-out"
           style={{
-            width: `${(extendedQuotes.length * 100) / cardsToShow}%`,
+            width: `${quotes.length * cardWidthPercent}%`,
             transform: `translateX(${translateX}%)`,
           }}
         >
-          {extendedQuotes.map((quote, idx) => (
+          {quotes.map((quote, idx) => (
             <div
               key={idx}
-              style={{
-                flex: `0 0 ${cardWidthPercent}%`,
-                maxWidth: `${cardWidthPercent}%`,
-                padding: "0 0.75rem",
-                boxSizing: "border-box",
-              }}
+              className="flex-shrink-0 px-2"
+              style={{ width: `${cardWidthPercent}%` }}
             >
-              <QuoteCard quote={quote} />
+              <div
+                className={`mx-auto w-full ${
+                  cardsToShow === 1
+                    ? "max-w-[360px]"
+                    : "max-w-xs sm:max-w-sm lg:max-w-md"
+                }`}
+              >
+                <QuoteCard quote={quote} />
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Next Button */}
       {hasMultipleQuotes && (
         <button
           onClick={next}
           aria-label="Next quotes"
-          className="z-10 bg-pink-600 dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition ml-4"
+          className="z-10 bg-pink-600 dark:bg-gray-800 p-3 rounded-full shadow-md hover:bg-purple-700 hover:text-white transition
+          absolute top-1/2 right-2 transform -translate-y-1/2 sm:static"
         >
           &#8594;
         </button>

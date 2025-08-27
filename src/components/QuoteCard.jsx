@@ -20,12 +20,11 @@ const QuoteCard = ({ quote }) => {
         <h3 className="text-xl sm:text-2xl italic mb-2 font-semibold font-handwriting break-words leading-snug">
           {quote.title}
         </h3>
+        <div className="mt-auto text-sm font-handwriting mt-6">
+          <p className="text-left self-start mt-2 text-sm text-gray-600 font-semibold transition-colors duration-300 group-hover:text-purple-700 w-full">
+            Click to learn about quote
+          </p>
 
-        <p className="text-left self-start mt-2 text-sm text-gray-600 font-semibold transition-colors duration-300 group-hover:text-purple-700 w-full">
-          Click to learn about quote
-        </p>
-
-        <div className="mt-auto text-sm font-handwriting mt-4">
           <p className="mt-2">
             <span className="font-semibold group-hover:underline">By</span>{" "}
             {quote.author}
