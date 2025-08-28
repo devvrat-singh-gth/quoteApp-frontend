@@ -11,7 +11,7 @@ const PasswordModal = ({ onClose, onSubmit, error }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
-        <h2 className="text-xl text-gray-700 font-semibold mb-4">
+        <h2 className="text-xl text-gray-700 dark:text-gray-700 font-semibold mb-4">
           Enter Password
         </h2>
         <form onSubmit={handleSubmit}>

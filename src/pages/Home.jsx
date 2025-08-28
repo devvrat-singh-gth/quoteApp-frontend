@@ -49,7 +49,7 @@ const HomePage = ({ navHeight }) => {
             </p>
             <p className="text-xl font-medium max-w-xl py-1 text-gray-100 gradient-text-glow leading-relaxed">
               Here, voices from all walks of life come together to inspire and
-              uplift...
+              uplift any mind striving for some wise insights....
             </p>
           </div>
 
