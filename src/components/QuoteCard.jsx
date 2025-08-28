@@ -18,7 +18,7 @@ const QuoteCard = ({ quote }) => {
         hover:shadow-xl hover:bg-green-100 cursor-pointer"
       >
         <h3
-          className="text-xl sm:text-2xl italic mb-2 font-bold break-words leading-snug"
+          className="text-2xl sm:text-2xl italic mb-2 font-bold break-words leading-snug"
           style={{ fontFamily: "'Dancing Script', cursive" }}
         >
           {quote.title}

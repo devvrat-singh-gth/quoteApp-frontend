@@ -4,6 +4,8 @@ import QuoteCard from "../components/QuoteCard";
 const QuoteCarousel = ({ quotes }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(1);
+  const [isSliding, setIsSliding] = useState(false);
+  const [slideDirection, setSlideDirection] = useState("right");
   const timerRef = useRef(null);
 
   const updateCardsToShow = () => {
@@ -19,15 +21,26 @@ const QuoteCarousel = ({ quotes }) => {
     return () => window.removeEventListener("resize", updateCardsToShow);
   }, []);
 
+  // Trigger slide with animation
+  const triggerSlide = (newIndex, direction) => {
+    setSlideDirection(direction);
+    setIsSliding(true);
+
+    setTimeout(() => {
+      setStartIndex(newIndex);
+      setIsSliding(false);
+    }, 900); // match CSS animation duration
+  };
+
   const next = useCallback(() => {
-    setStartIndex((prev) => (prev + cardsToShow) % quotes.length);
-  }, [cardsToShow, quotes.length]);
+    const newIndex = (startIndex + cardsToShow) % quotes.length;
+    triggerSlide(newIndex, "right");
+  }, [startIndex, cardsToShow, quotes.length]);
 
   const prev = useCallback(() => {
-    setStartIndex(
-      (prev) => (prev - cardsToShow + quotes.length) % quotes.length
-    );
-  }, [cardsToShow, quotes.length]);
+    const newIndex = (startIndex - cardsToShow + quotes.length) % quotes.length;
+    triggerSlide(newIndex, "left");
+  }, [startIndex, cardsToShow, quotes.length]);
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -57,6 +70,14 @@ const QuoteCarousel = ({ quotes }) => {
 
   const hasMultipleQuotes = quotes.length > cardsToShow;
 
+  // Animation class depending on slide state and direction
+  const slideClass =
+    isSliding && slideDirection === "right"
+      ? "animate-slide-left"
+      : isSliding && slideDirection === "left"
+      ? "animate-slide-right"
+      : "";
+
   return (
     <div className="relative w-full flex items-center justify-center overflow-visible">
       {/* Left Arrow */}
@@ -72,9 +93,9 @@ const QuoteCarousel = ({ quotes }) => {
         </button>
       )}
 
-      {/* Quote Cards */}
+      {/* Quote Cards with slide animation */}
       <div
-        className={`grid gap-6 ${
+        className={`grid gap-6 ${slideClass} ${
           cardsToShow === 1
             ? "grid-cols-1"
             : cardsToShow === 2

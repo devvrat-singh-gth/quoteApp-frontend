@@ -176,7 +176,10 @@ const SingleQuote = () => {
               <ArrowLeft />
               Back to All Quotes
             </Link>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+            <h1
+              className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
               {title}
             </h1>
 
