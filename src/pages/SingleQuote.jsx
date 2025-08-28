@@ -64,7 +64,6 @@ const SingleQuote = () => {
   useEffect(() => {
     async function fetchSingleQuote() {
       try {
-        // Build URL with entered password if available
         const url = enteredPassword
           ? `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}?password=${enteredPassword}&includePassword=true`
           : `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}?includePassword=true`;
@@ -82,7 +81,6 @@ const SingleQuote = () => {
     fetchSingleQuote();
   }, [id, navigate, enteredPassword]);
 
-  // Open password modal if quote is password protected; else navigate or show delete confirm
   function openPasswordModal(type) {
     if (!quote?.password) {
       if (type === "edit") {
@@ -100,7 +98,6 @@ const SingleQuote = () => {
 
   async function handlePasswordSubmit(inputPassword) {
     try {
-      // Try fetching quote with the given password to validate
       await axios.get(
         `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
         {
@@ -108,13 +105,12 @@ const SingleQuote = () => {
         }
       );
 
-      // Password valid - proceed
       setShowPwdModal(false);
       setEnteredPassword(inputPassword);
 
       if (actionType === "edit") {
         navigate(`/edit-quote/${id}`, {
-          state: { password: inputPassword }, // pass password to edit page
+          state: { password: inputPassword },
         });
       } else if (actionType === "delete") {
         setShowConfirmModal(true);
@@ -170,7 +166,8 @@ const SingleQuote = () => {
   return (
     <main>
       <div className="w-full max-w-7xl py-10 mx-auto px-6">
-        <div className="bg-white dark:bg-green-50 rounded-lg shadow-md p-8 mx-10">
+        {/* Updated container with responsive margin/padding */}
+        <div className="bg-white dark:bg-green-50 rounded-lg shadow-md p-6 sm:p-8 mx-4 sm:mx-10 max-w-full sm:max-w-none">
           <div className="mb-8">
             <Link
               to="/quotes"
@@ -179,9 +176,11 @@ const SingleQuote = () => {
               <ArrowLeft />
               Back to All Quotes
             </Link>
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">{title}</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+              {title}
+            </h1>
 
-            <div className="flex justify-between items-center text-gray-600 my-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-gray-600 my-6 gap-4">
               <div>
                 <h6 className="font-bold italic">
                   By <span className="font-serif"> {author}</span>
@@ -192,10 +191,16 @@ const SingleQuote = () => {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
+                  })}{" "}
+                  at{" "}
+                  {new Date(createdAt).toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
                   })}
                 </span>
               </div>
-              <div className="flex items-center gap-4 my-2">
+              <div className="flex flex-wrap gap-4">
                 <button
                   className="bg-green-600 text-white px-4 py-2 rounded-lg text-md font-semibold hover:bg-green-700 transition-colors"
                   onClick={() => openPasswordModal("edit")}
