@@ -40,7 +40,7 @@ const HomePage = ({ navHeight }) => {
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full pt-6">
           {/* Hero Text Container */}
-          <div className="flex-1 flex flex-col items-start text-left mt-6">
+          <div className="flex-1 flex flex-col items-start text-left mt-10">
             <div className="w-full max-w-2xl">
               <h1 className="text-3xl md:text-6xl font-serif mb-4 text-red-800 gradient-text-glow lg:whitespace-nowrap">
                 Welcome to{" "}

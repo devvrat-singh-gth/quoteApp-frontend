@@ -84,7 +84,7 @@ nav {
     background-image: linear-gradient(
       270deg,
       #ff00c8,
-      #00ffe7,
+      #00ffe5a0,
       #8e2de2,
       #ff079c,
       #0ca337,
@@ -95,7 +95,7 @@ nav {
     background-position: 50% 50%;
     background-image: linear-gradient(
       270deg,
-      #00ffe7,
+      #00ffe5a0,
       #8e2de2,
       #83ff07,
       #0ca337,
@@ -111,7 +111,7 @@ nav {
       #ff079c,
       #0ca337,
       #83ff07,
-      #00ffe7,
+      #00ffe5a0,
       #0dec09da
     );
   }
@@ -122,7 +122,7 @@ nav {
       #ff079c,
       #0ca337,
       #83ff07,
-      #00ffe7,
+      #00ffe5a0,
       #8e2de2,
       #0dec09da
     );
@@ -133,7 +133,7 @@ nav {
       270deg,
       #0ca337,
       #ff00c8,
-      #00ffe7,
+      #00ffe5a0,
       #8e2de2,
       #83ff07,
       #0dec09da
@@ -151,7 +151,7 @@ nav {
   background-image: linear-gradient(
     270deg,
     #ff00c8,
-    #00ffe7,
+    #00ffe5a0,
     #8e2de2,
     #ff079c,
     #3a0ca3,
