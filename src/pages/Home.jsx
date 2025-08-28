@@ -74,7 +74,7 @@ const HomePage = ({ navHeight }) => {
       </section>
 
       {/* Recent Quotes Section */}
-      <section className="mb-24 max-w-7xl mx-auto px-4">
+      <section className="mb-24 max-w-7xl mx-auto px-2 sm:px-4">
         <h2 className="text-3xl font-bold text-black dark:text-white mb-8 text-center underline italic gradient-text-glow">
           Recent Quotes
         </h2>
@@ -84,7 +84,9 @@ const HomePage = ({ navHeight }) => {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-800 dark:border-lime-400 mx-auto"></div>
           </div>
         ) : recentQuotes.length > 0 ? (
-          <QuoteCarousel quotes={recentQuotes} />
+          <div className="w-full">
+            <QuoteCarousel quotes={recentQuotes} />
+          </div>
         ) : (
           <div className="text-center py-12">
             <p className="text-gray-500 dark:text-gray-300 mb-4">

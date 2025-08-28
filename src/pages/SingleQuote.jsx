@@ -169,8 +169,8 @@ const SingleQuote = () => {
 
   return (
     <main>
-      <div className="max-w-4xl py-10 mx-auto">
-        <div className="bg-white rounded-lg shadow-md p-8">
+      <div className="w-full max-w-7xl py-10 mx-auto px-6">
+        <div className="bg-white dark:bg-green-50 rounded-lg shadow-md p-8 mx-10">
           <div className="mb-8">
             <Link
               to="/quotes"
@@ -181,13 +181,13 @@ const SingleQuote = () => {
             </Link>
             <h1 className="text-4xl font-bold text-gray-800 mb-4">{title}</h1>
 
-            <div className="flex justify-between items-center text-gray-600 mb-6">
+            <div className="flex justify-between items-center text-gray-600 my-6">
               <div>
-                <h6 className="font-bold">
-                  By <span> {author}</span>
+                <h6 className="font-bold italic">
+                  By <span className="font-serif"> {author}</span>
                 </h6>
-                <span className="font-semibold">Created At </span>
-                <span>
+                <span className="font-bold italic">Created At </span>
+                <span className="font-serif">
                   {new Date(createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
@@ -195,7 +195,7 @@ const SingleQuote = () => {
                   })}
                 </span>
               </div>
-              <div className="flex items-center gap-4 mt-4">
+              <div className="flex items-center gap-4 my-2">
                 <button
                   className="bg-green-600 text-white px-4 py-2 rounded-lg text-md font-semibold hover:bg-green-700 transition-colors"
                   onClick={() => openPasswordModal("edit")}
