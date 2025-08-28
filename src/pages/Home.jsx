@@ -39,7 +39,7 @@ const HomePage = ({ navHeight }) => {
         style={{ minHeight: "400px" }}
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full pt-6">
-          <div className="flex-1 flex flex-col items-center text-center lg:items-start lg:text-left mt-6">
+          <div className="flex-1 flex flex-col items-start text-left mt-6">
             <h1 className="text-3xl md:text-6xl font-bold mb-4 text-red-800 gradient-text-glow">
               Welcome to <span className="text-blue-800">QuoteVault</span>
             </h1>
