@@ -39,20 +39,27 @@ const HomePage = ({ navHeight }) => {
         style={{ minHeight: "400px" }}
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full pt-6">
+          {/* Hero Text Container */}
           <div className="flex-1 flex flex-col items-start text-left mt-6">
-            <h1 className="text-3xl md:text-6xl font-bold mb-4 text-red-800 gradient-text-glow">
-              Welcome to <span className="text-blue-800">QuoteVault</span>
-            </h1>
-            <p className="text-xl font-medium max-w-xl py-4 text-gray-100 gradient-text-glow leading-relaxed">
-              A collection of inspiring, thoughtful, and powerful quotes shared
-              by you—each one a beacon of insight, reflection, and wisdom...
-            </p>
-            <p className="text-xl font-medium max-w-xl py-1 text-gray-100 gradient-text-glow leading-relaxed">
-              Here, voices from all walks of life come together to inspire and
-              uplift any mind striving for some wise insights....
-            </p>
+            <div className="w-full max-w-2xl">
+              <h1 className="text-3xl md:text-6xl font-serif mb-4 text-red-800 gradient-text-glow lg:whitespace-nowrap">
+                Welcome to{" "}
+                <span className="text-blue-800 font-serif">QuoteVault</span>
+              </h1>
+
+              <p className="text-xl font-medium py-4 text-gray-100 gradient-text-glow leading-relaxed">
+                A collection of inspiring, thoughtful, and powerful quotes
+                shared by you—each one a beacon of insight, reflection, and
+                wisdom...
+              </p>
+              <p className="text-xl font-medium py-1 text-gray-100 gradient-text-glow leading-relaxed">
+                Here, voices from all walks of life come together to inspire and
+                uplift any mind striving for some wise insights....
+              </p>
+            </div>
           </div>
 
+          {/* Quote of the Day */}
           {recentQuotes.length > 0 && (
             <div className="flex-1 flex flex-col justify-start items-center max-w-md w-full mx-auto mt-6 lg:mt-0">
               <h2 className="font-bold text-3xl text-black dark:text-white md:text-4xl font-serif mb-2 px-10 underline italic gradient-text-glow text-center lg:text-left">
