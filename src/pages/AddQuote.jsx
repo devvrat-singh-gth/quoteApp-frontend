@@ -53,7 +53,7 @@ const AddQuote = function () {
   }
 
   return (
-    <main className="max-w-2xl py-4 mx-auto">
+    <main className="max-w-2xl py-4 mx-auto bg-emerald-200 dark:bg-gray-800">
       <h1 className="flex items-center justify-center gap-2 text-4xl font-bold mb-8 text-center text-gray-700 dark:text-gray-200">
         Share a New Quote <SquarePen width={32} height={32} />
       </h1>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, PencilLine } from "lucide-react";
 import { toast } from "react-toastify";
 
 import ConfirmDeleteModal from "../components/ConfirmDeleteModals";
@@ -16,7 +16,7 @@ const PasswordModal = ({ onClose, onSubmit, error }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
+      <div className="bg-white dark:text-black p-6 rounded shadow-lg max-w-sm w-full">
         <h2 className="text-xl font-semibold mb-4">Enter Password</h2>
         <form onSubmit={handleSubmit}>
           <input
@@ -32,7 +32,7 @@ const PasswordModal = ({ onClose, onSubmit, error }) => {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border rounded hover:bg-gray-100"
+              className="px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300"
             >
               Cancel
             </button>
@@ -164,8 +164,8 @@ const SingleQuote = () => {
   const { author, content, createdAt, tags, title } = quote;
 
   return (
-    <main>
-      <div className="w-full max-w-7xl py-10 mx-auto px-6">
+    <main className="mx-auto h-full w-full">
+      <div className="w-full max-w-7xl py-10 mx-auto px-2 bg-emerald-100 dark:bg-gray-800">
         {/* Updated container with responsive margin/padding */}
         <div className="bg-white dark:bg-green-50 rounded-lg shadow-md p-6 sm:p-8 mx-4 sm:mx-10 max-w-full sm:max-w-none">
           <div className="mb-8">
@@ -183,7 +183,7 @@ const SingleQuote = () => {
               {title}
             </h1>
 
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-gray-600 my-6 gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-gray-600 my-8 gap-4">
               <div>
                 <h6 className="font-bold italic">
                   By <span className="font-serif"> {author}</span>
@@ -225,7 +225,7 @@ const SingleQuote = () => {
                 {tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="inline-block bg-blue-100 hover:bg-purple-100 text-blue-500 hover:text-purple-900 text-sm px-3 py-1 rounded-full mr-2"
+                    className="inline-block bg-blue-200 hover:bg-purple-200 text-blue-500 hover:text-purple-900 text-sm px-3 py-1 rounded-full mr-2"
                   >
                     #{tag}
                   </span>
@@ -236,7 +236,8 @@ const SingleQuote = () => {
 
           <div className="prose max-w-none">
             <div className="text-blue-700 leading-relaxed whitespace-pre-line text-2xl font-serif">
-              <h6 className="mt-4 mb-4 text-xl font-semibold text-gray-700">
+              <h6 className="mt-4 mb-4 text-xl font-semibold text-gray-700 flex items-center">
+                <PencilLine className="mr-2" />
                 Quote Explanation By Author!!!!!!
               </h6>
               {content}

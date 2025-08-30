@@ -27,8 +27,8 @@ const AllQuotes = function () {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <div className="text-center mb-8 py-5">
+    <main className="min-h-screen bg-emerald-200 dark:bg-gray-900 transition-colors duration-300">
+      <div className="text-center py-5">
         <h1 className="text-5xl font-extrabold mb-12 text-gray-700 dark:text-gray-200">
           All Quotes
         </h1>
@@ -43,7 +43,13 @@ const AllQuotes = function () {
             <div className="animate-spin rounded-full mt-20 h-20 w-20 border-b-2 border-pink-800 mx-auto"></div>
           </div>
         ) : quotes.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div
+            className="grid gap-6 px-4 mb-8"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            }}
+          >
             {quotes.map(function (quote) {
               return <QuoteCard key={quote._id} quote={quote} />;
             })}

@@ -14,7 +14,7 @@ const QuoteCard = ({ quote }) => {
     <Link to={`/quote/${quote._id}`} className="block h-full">
       <article
         className="group h-full flex flex-col justify-between bg-white text-black 
-        rounded-[25px] border-double border-10 border-black p-6 shadow-md transition-all duration-300 ease-in-out 
+        rounded-[25px] border-double border-10 border-black p-6 shadow-md shadow-black dark:shadow-amber-300 transition-all duration-300 ease-in-out 
         hover:shadow-xl hover:bg-green-100 cursor-pointer"
       >
         <h3
@@ -45,7 +45,7 @@ const QuoteCard = ({ quote }) => {
             {quote.tags.map((tag, index) => (
               <span
                 key={index}
-                className="inline-block bg-blue-100 text-blue-800 hover:bg-purple-100 hover:text-purple-600 text-xs px-2 py-1 rounded mx-2 mb-5"
+                className="inline-block bg-blue-300 text-blue-800 hover:bg-purple-100 hover:text-purple-600 text-xs px-2 py-1 rounded mx-2 mb-5"
               >
                 #{tag}
               </span>

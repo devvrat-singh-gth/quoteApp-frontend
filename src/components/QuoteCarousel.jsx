@@ -10,9 +10,13 @@ const QuoteCarousel = ({ quotes }) => {
 
   const updateCardsToShow = () => {
     const width = window.innerWidth;
-    if (width >= 1024) setCardsToShow(3);
-    else if (width >= 768) setCardsToShow(2);
-    else setCardsToShow(1);
+
+    if (width >= 2000) setCardsToShow(6); // very large screens
+    else if (width >= 1800) setCardsToShow(5);
+    else if (width >= 1400) setCardsToShow(4);
+    else if (width >= 1024) setCardsToShow(3); // desktop
+    else if (width >= 768) setCardsToShow(2); // tablet
+    else setCardsToShow(1); // mobile
   };
 
   useEffect(() => {
@@ -63,6 +67,7 @@ const QuoteCarousel = ({ quotes }) => {
     resetTimer();
   };
 
+  // Prepare visible quotes
   const visibleQuotes = [];
   for (let i = 0; i < cardsToShow; i++) {
     visibleQuotes.push(quotes[(startIndex + i) % quotes.length]);
@@ -70,7 +75,7 @@ const QuoteCarousel = ({ quotes }) => {
 
   const hasMultipleQuotes = quotes.length > cardsToShow;
 
-  // Animation class depending on slide state and direction
+  // Slide animation class
   const slideClass =
     isSliding && slideDirection === "right"
       ? "animate-slide-left"
@@ -85,9 +90,11 @@ const QuoteCarousel = ({ quotes }) => {
         <button
           onClick={() => handleArrowClick("prev")}
           aria-label="Previous quotes"
-          className="absolute -left-10 sm:-left-20 top-1/2 transform -translate-y-1/2 
-            z-20 bg-pink-600 dark:bg-pink-800 p-3 rounded-full shadow-md 
-            hover:bg-purple-700 hover:text-white transition"
+          className="absolute mx-10 sm:-left-20 -left-17 top-1/2 transform -translate-y-1/2 
+      z-20 bg-pink-600 dark:bg-pink-800 
+      p-5 sm:p-3 text-sm sm:text-base 
+      rounded-full shadow-md 
+      hover:bg-purple-700 hover:text-white transition"
         >
           &#8592;
         </button>
@@ -95,13 +102,10 @@ const QuoteCarousel = ({ quotes }) => {
 
       {/* Quote Cards with slide animation */}
       <div
-        className={`grid gap-6 ${slideClass} ${
-          cardsToShow === 1
-            ? "grid-cols-1"
-            : cardsToShow === 2
-            ? "grid-cols-2"
-            : "grid-cols-3"
-        } transition-all flex-1`}
+        className={`grid gap-6 ${slideClass} transition-all flex-1`}
+        style={{
+          gridTemplateColumns: `repeat(${cardsToShow}, minmax(0, 1fr))`,
+        }}
       >
         {visibleQuotes.map((quote, idx) => (
           <div
@@ -119,9 +123,14 @@ const QuoteCarousel = ({ quotes }) => {
         <button
           onClick={() => handleArrowClick("next")}
           aria-label="Next quotes"
-          className="absolute -right-10 sm:-right-20 top-1/2 transform -translate-y-1/2 
-            z-20 bg-pink-600 dark:bg-pink-800 p-3 rounded-full shadow-md 
-            hover:bg-purple-700 hover:text-white transition"
+          className="absolute top-1/2 -translate-y-1/2 z-20 
+      -right-7 sm:-right-10 
+      p-5 sm:p-3 
+      text-sm sm:text-base 
+      bg-pink-600 dark:bg-pink-800 
+      rounded-full shadow-md 
+      hover:bg-purple-700 hover:text-white 
+      transition"
         >
           &#8594;
         </button>

@@ -106,99 +106,34 @@ nav {
   animation: slideRight 0.6s ease-in-out forwards;
 }
 
-/* 🌈 Animated Cyberpunk Gradient Background */
-@keyframes cyberpunkGradient {
-  0% {
-    background-position: 0% 50%;
-    background-image: linear-gradient(
-      270deg,
-      #ff00c8,
-      #00ffe5a0,
-      #8e2de2,
-      #ff079c,
-      #0ca337,
-      #0dec09da
-    );
-  }
-  25% {
-    background-position: 50% 50%;
-    background-image: linear-gradient(
-      270deg,
-      #00ffe5a0,
-      #8e2de2,
-      #83ff07,
-      #0ca337,
-      #ff00c8,
-      #0dec09da
-    );
-  }
-  50% {
-    background-position: 100% 50%;
-    background-image: linear-gradient(
-      270deg,
-      #8e2de2,
-      #ff079c,
-      #0ca337,
-      #83ff07,
-      #00ffe5a0,
-      #0dec09da
-    );
-  }
-  75% {
-    background-position: 50% 50%;
-    background-image: linear-gradient(
-      270deg,
-      #ff079c,
-      #0ca337,
-      #83ff07,
-      #00ffe5a0,
-      #8e2de2,
-      #0dec09da
-    );
-  }
-  100% {
-    background-position: 0% 50%;
-    background-image: linear-gradient(
-      270deg,
-      #0ca337,
-      #ff00c8,
-      #00ffe5a0,
-      #8e2de2,
-      #83ff07,
-      #0dec09da
-    );
-  }
-}
-
-.animated-gradient-bg {
+.static-gradient-bg {
   display: block;
   width: 100%;
   margin: 0 auto;
   min-height: 200px;
-  animation: cyberpunkGradient 12s ease infinite;
-  background-size: 300% 300%;
+
+  background-size: cover;
   background-image: linear-gradient(
-    270deg,
-    #ff00c8,
-    #00ffe5a0,
-    #8e2de2,
-    #ff079c,
-    #3a0ca3,
-    #0dec09da
+    135deg,
+    #1c5f7c78,
+    #28a58e95,
+    #0dad87,
+    #18bd5a55,
+    #1f8a4c4f
   );
+
   border-radius: 0.5rem;
-  box-shadow: 0 0 20px rgba(255, 0, 200, 0.3), 0 0 40px rgba(0, 255, 231, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1), 0 0 40px rgba(0, 128, 64, 0.2);
   padding: 3rem 2rem;
   color: white;
 
   position: relative;
-  will-change: background-position;
-  box-sizing: border-box; /* important */
+  box-sizing: border-box;
 }
 
 /* ✨ Optional: Text Glow for Contrast */
 .gradient-text-glow {
-  text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #ff00c8, 0 0 16px #00ffe7;
+  text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #e1fe00, 0 0 16px #bfc602;
 }
 
 /* Responsive typography */
@@ -261,7 +196,7 @@ section {
 /* Buttons example */
 button,
 .btn {
-  padding: 0.75rem 1.5rem;
+  /* padding: 0.75rem 1.5rem; */
   font-weight: 600;
   border-radius: 0.5rem;
   cursor: pointer;

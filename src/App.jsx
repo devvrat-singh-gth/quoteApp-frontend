@@ -48,11 +48,8 @@ const App = () => {
           setDarkMode={setDarkMode}
         />
 
-        <div className="flex flex-col flex-grow">
-          <main
-            className="flex-grow transition-all duration-300 w-full px-4"
-            style={{ paddingTop: menuOpen ? navHeight - 250 : navHeight - 80 }}
-          >
+        <div className="flex flex-col flex-grow bg-emerald-100 dark:bg-gray-800">
+          <main className={`flex-grow transition-all duration-300 w-full`}>
             <Routes>
               <Route
                 path="/"
@@ -69,8 +66,6 @@ const App = () => {
 
           <Footer />
         </div>
-
-        <ToastContainer position="top-center" style={{ marginBottom: 0 }} />
       </div>
     </BrowserRouter>
   );

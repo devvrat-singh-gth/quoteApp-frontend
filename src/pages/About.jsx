@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 const AboutPage = function () {
   return (
     <>
-      <main className="min-h-screen px-6 py-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+      <main className="min-h-screen px-6 py-12 bg-emerald-100 dark:bg-gray-900 transition-colors duration-300">
         <h1 className="text-5xl font-bold mb-6 text-gray-700 dark:text-gray-200">
           About
         </h1>
@@ -19,7 +19,6 @@ const AboutPage = function () {
           Feel free to explore, share, and add your favorite quotes!
         </p>
       </main>
-      <Footer />
     </>
   );
 };

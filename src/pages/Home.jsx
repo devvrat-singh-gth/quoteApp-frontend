@@ -31,30 +31,36 @@ const HomePage = ({ navHeight }) => {
   return (
     <main
       style={{ paddingTop: `clamp(3.5rem, ${navHeight}px, 7rem)` }}
-      className="min-h-screen px-4 py-5 md:px-8 transition-all duration-300 bg-white dark:bg-gray-900"
+      className="min-h-screen px-4 py-5 md:px-8 transition-all duration-300 bg-emerald-200 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <section
-        className="m-4 sm:m-8 md:m-12 rounded-lg p-6 md:p-8 shadow-md animated-gradient-bg"
+        className="m-4 sm:m-8 md:m-12 rounded-lg p-6 md:p-8 border-4 border-black shadow-md static-gradient-bg"
         style={{ minHeight: "400px" }}
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full pt-6">
           {/* Hero Text Container */}
-          <div className="flex-1 flex flex-col items-start text-left mt-10">
+          <div className="flex-1 flex flex-col items-start text-left mt-5">
             <div className="w-full max-w-2xl">
               <h1 className="text-3xl md:text-6xl font-serif mb-4 text-red-800 gradient-text-glow lg:whitespace-nowrap">
                 Welcome to{" "}
                 <span className="text-blue-800 font-serif">QuoteVault</span>
               </h1>
 
-              <p className="text-xl font-medium py-4 text-gray-100 gradient-text-glow leading-relaxed">
+              <p className="text-xl font-medium py-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
                 A collection of inspiring, thoughtful, and powerful quotes
                 shared by you—each one a beacon of insight, reflection, and
                 wisdom...
               </p>
-              <p className="text-xl font-medium py-1 text-gray-100 gradient-text-glow leading-relaxed">
-                Here, voices from all walks of life come together to inspire and
-                uplift any mind striving for some wise insights....
+              <p className="text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+                These quotes are not only words but also reflections of life's
+                deepest experiences. Each one is a window into the minds of
+                thinkers, dreamers, and visionaries who have shaped our world.
+              </p>
+              <p className="text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+                Whether these words come from the past or are shared in the
+                present moment, they offer valuable lessons for navigating our
+                personal and collective journeys.
               </p>
             </div>
           </div>
@@ -111,7 +117,7 @@ const HomePage = ({ navHeight }) => {
               to="/quotes"
               className="relative inline-block px-6 py-3 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-black via-pink-800 to-purple-900 dark:from-gray-900 dark:via-pink-900 dark:to-purple-950 rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-black via-green-700 to-lime-700  rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
               <span className="relative z-10 gradient-text-glow">
                 View All Quotes
               </span>

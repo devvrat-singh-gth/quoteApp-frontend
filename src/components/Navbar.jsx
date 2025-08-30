@@ -1,17 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Moon, Sun } from "lucide-react";
 import { Si4Chan } from "react-icons/si";
 
-const Navbar = ({
-  onHeightChange,
-  menuOpen,
-  setMenuOpen,
-  darkMode,
-  setDarkMode,
-}) => {
+const Navbar = ({ onHeightChange, menuOpen, setMenuOpen }) => {
   const headerRef = useRef(null);
+  const [darkMode, setDarkMode] = useState(false);
 
+  // Check the dark mode preference from localStorage or system preference on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setDarkMode(savedTheme === "dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setDarkMode(prefersDark);
+    }
+  }, []);
+
+  // Apply the dark mode class on body and update localStorage when darkMode state changes
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  // Adjust navbar height when menu is open
   useEffect(() => {
     if (headerRef.current) {
       const height = headerRef.current.offsetHeight;
@@ -31,6 +51,7 @@ const Navbar = ({
             <Si4Chan className="text-lime-400" />
             QuoteVault
           </Link>
+
           {/* Desktop nav */}
           <nav className="hidden md:flex space-x-6 items-center">
             {/* Dark mode toggle */}
@@ -85,7 +106,8 @@ const Navbar = ({
               All Quotes
             </Link>
           </nav>
-          {/* MOBILE: Dark mode toggle + menu button */}
+
+          {/* Mobile: Dark mode toggle + menu button */}
           <div className="flex items-center md:hidden space-x-4">
             {/* Dark mode toggle */}
             <button
