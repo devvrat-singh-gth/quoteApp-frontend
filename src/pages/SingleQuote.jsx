@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ArrowLeft, PencilLine } from "lucide-react";
+import {
+  ArrowLeft,
+  PencilLine,
+  UserRoundPen,
+  Trash2,
+  UserRound,
+} from "lucide-react";
 import { toast } from "react-toastify";
 
 import ConfirmDeleteModal from "../components/ConfirmDeleteModals";
@@ -171,7 +177,7 @@ const SingleQuote = () => {
           <div className="mb-8">
             <Link
               to="/quotes"
-              className="text-purple-700 hover:text-pink-500 mb-4 flex items-center gap-1"
+              className="text-green-700 hover:text-lime-500 mb-4 flex items-center gap-1"
             >
               <ArrowLeft />
               Back to All Quotes
@@ -205,16 +211,18 @@ const SingleQuote = () => {
               </div>
               <div className="flex flex-wrap gap-4">
                 <button
-                  className="bg-green-600 text-white px-4 py-2 rounded-lg text-md font-semibold hover:bg-green-700 transition-colors"
+                  className="flex items-center bg-green-600 text-white px-4 py-2 rounded-lg text-md font-semibold hover:bg-green-700 transition-colors"
                   onClick={() => openPasswordModal("edit")}
                 >
+                  <PencilLine className="mr-2" />
                   Edit Quote
                 </button>
 
                 <button
-                  className="bg-red-600 text-white px-4 py-2 rounded-lg text-md font-semibold hover:bg-red-700 transition-colors"
+                  className="flex items-center bg-red-600 text-white px-4 py-2 rounded-lg text-md font-semibold hover:bg-red-700 transition-colors"
                   onClick={() => openPasswordModal("delete")}
                 >
+                  <Trash2 className="mr-2" />
                   Delete Quote
                 </button>
               </div>
@@ -237,7 +245,7 @@ const SingleQuote = () => {
           <div className="prose max-w-none">
             <div className="text-blue-700 leading-relaxed whitespace-pre-line text-2xl font-serif">
               <h6 className="mt-4 mb-4 text-xl font-semibold text-gray-700 flex items-center">
-                <PencilLine className="mr-2" />
+                <UserRoundPen className="mr-2" />
                 Quote Explanation By Author!!!!!!
               </h6>
               {content}
