@@ -62,6 +62,7 @@ const App = () => {
               <Route path="/quote/:id" element={<SingleQuote />} />
               <Route path="/edit-quote/:id" element={<EditQuote />} />
             </Routes>
+            <ToastContainer />
           </main>
 
           <Footer />

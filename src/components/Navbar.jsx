@@ -54,20 +54,6 @@ const Navbar = ({ onHeightChange, menuOpen, setMenuOpen }) => {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex space-x-6 items-center">
-            {/* Dark mode toggle */}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-md hover:bg-green-500 bg-opacity-30 dark:hover:bg-gray-700 transition-colors"
-              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              aria-label="Toggle Dark Mode"
-            >
-              {darkMode ? (
-                <Sun className="text-yellow-300" size={25} />
-              ) : (
-                <Moon className="text-gray-300" size={25} />
-              )}
-            </button>
-
             {/* Links */}
             <Link
               to="/"
