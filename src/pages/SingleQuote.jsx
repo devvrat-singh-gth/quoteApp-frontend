@@ -61,6 +61,7 @@ const SingleQuote = () => {
   const [error, setError] = useState("");
   const [enteredPassword, setEnteredPassword] = useState(undefined);
   const [yourQuotes, setYourQuotes] = useState([]);
+  const [justDeleted, setJustDeleted] = useState(false); // NEW FLAG
 
   // Load yourQuotes from localStorage once on mount
   useEffect(() => {
@@ -72,7 +73,7 @@ const SingleQuote = () => {
     }
   }, []);
 
-  // Fetch single quote, refetch if id or enteredPassword changes
+  // Fetch single quote, refetch if id, enteredPassword or justDeleted changes
   useEffect(() => {
     async function fetchSingleQuote() {
       setIsLoading(true);
@@ -84,15 +85,18 @@ const SingleQuote = () => {
         const response = await axios.get(url);
         setQuote(response.data);
       } catch {
-        toast.error("Quote not found or incorrect password!");
-        navigate("/quotes");
+        if (!justDeleted) {
+          // Prevent redirect after deletion
+          toast.error("Quote not found or incorrect password!");
+          navigate("/quotes");
+        }
       } finally {
         setIsLoading(false);
       }
     }
 
     fetchSingleQuote();
-  }, [id, navigate, enteredPassword]);
+  }, [id, navigate, enteredPassword, justDeleted]);
 
   // Check if current quote is in yourQuotes list
   const isInYourQuotes = yourQuotes.some((q) => q === id || q._id === id);
@@ -155,6 +159,7 @@ const SingleQuote = () => {
         config
       );
       toast.success("Quote Deleted!");
+      setJustDeleted(true); // Prevent redirect in fetch effect
       navigate("/your-quotes");
     } catch (error) {
       console.error("Delete error:", error.response || error.message || error);
