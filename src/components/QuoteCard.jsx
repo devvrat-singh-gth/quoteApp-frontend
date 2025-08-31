@@ -21,7 +21,16 @@ const QuoteCard = ({ quote }) => {
           className="text-2xl sm:text-2xl italic mb-2 font-bold break-words leading-snug"
           style={{ fontFamily: "'Dancing Script', cursive" }}
         >
-          {quote.title}
+          {(() => {
+            const raw = quote.title?.trim() || "";
+
+            // Remove any kind of quote characters at start and end — normal, smart, or repeated
+            const cleaned = raw
+              .replace(/^["'“”]+/, "") // Remove leading quotes of all types
+              .replace(/["'“”]+$/, ""); // Remove trailing quotes of all types
+
+            return `"${cleaned}"`;
+          })()}
         </h3>
 
         <div className="mt-auto text-sm font-handwriting mt-6">

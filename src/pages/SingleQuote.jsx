@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {
-  ArrowLeft,
-  PencilLine,
-  UserRoundPen,
-  Trash2,
-  UserRound,
-} from "lucide-react";
+import { ArrowLeft, PencilLine, Trash2, UserRoundPen } from "lucide-react";
 import { toast } from "react-toastify";
 
 import ConfirmDeleteModal from "../components/ConfirmDeleteModals";
@@ -66,9 +60,22 @@ const SingleQuote = () => {
   const [actionType, setActionType] = useState(null); // "edit" or "delete"
   const [error, setError] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
+  const [yourQuotes, setYourQuotes] = useState([]);
 
+  // Load yourQuotes from localStorage once on mount
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("myQuotes")) || [];
+      setYourQuotes(saved);
+    } catch {
+      setYourQuotes([]);
+    }
+  }, []);
+
+  // Fetch single quote, refetch if id or enteredPassword changes
   useEffect(() => {
     async function fetchSingleQuote() {
+      setIsLoading(true);
       try {
         const url = enteredPassword
           ? `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}?password=${enteredPassword}&includePassword=true`
@@ -76,7 +83,7 @@ const SingleQuote = () => {
 
         const response = await axios.get(url);
         setQuote(response.data);
-      } catch (error) {
+      } catch {
         toast.error("Quote not found or incorrect password!");
         navigate("/quotes");
       } finally {
@@ -86,6 +93,9 @@ const SingleQuote = () => {
 
     fetchSingleQuote();
   }, [id, navigate, enteredPassword]);
+
+  // Compute if current quote is in yourQuotes list
+  const isInYourQuotes = yourQuotes.some((q) => q === id || q._id === id);
 
   function openPasswordModal(type) {
     if (!quote?.password) {
@@ -104,6 +114,7 @@ const SingleQuote = () => {
 
   async function handlePasswordSubmit(inputPassword) {
     try {
+      // Validate password before proceeding
       await axios.get(
         `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
         {
@@ -121,7 +132,7 @@ const SingleQuote = () => {
       } else if (actionType === "delete") {
         setShowConfirmModal(true);
       }
-    } catch (error) {
+    } catch {
       setError("Incorrect password! Please try again.");
     }
   }
@@ -136,7 +147,7 @@ const SingleQuote = () => {
       );
       toast.success("Quote Deleted!");
       navigate("/quotes");
-    } catch (error) {
+    } catch {
       toast.error("Error deleting quote");
     } finally {
       setShowConfirmModal(false);
@@ -146,7 +157,7 @@ const SingleQuote = () => {
   if (isLoading) {
     return (
       <div className="text-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-800 mx-auto"></div>
+        <div className="animate-spin rounded-full h-20 w-20 mt-20 border-b-4 border-green-800 mx-auto"></div>
       </div>
     );
   }
@@ -172,21 +183,26 @@ const SingleQuote = () => {
   return (
     <main className="mx-auto h-full w-full">
       <div className="w-full max-w-7xl py-10 mx-auto px-2 bg-emerald-100 dark:bg-gray-800">
-        {/* Updated container with responsive margin/padding */}
         <div className="bg-white dark:bg-green-50 rounded-lg shadow-md p-6 sm:p-8 mx-4 sm:mx-10 max-w-full sm:max-w-none">
           <div className="mb-8">
             <Link
-              to="/quotes"
+              to={isInYourQuotes ? "/your-quotes" : "/quotes"}
               className="text-green-700 hover:text-lime-500 mb-4 flex items-center gap-1"
             >
               <ArrowLeft />
-              Back to All Quotes
+              Back to {isInYourQuotes ? "Your Quotes" : "All Quotes"}
             </Link>
             <h1
               className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
-              {title}
+              {(() => {
+                const raw = title?.trim() || "";
+                const cleaned = raw
+                  .replace(/^["'“”]+/, "")
+                  .replace(/["'“”]+$/, "");
+                return `"${cleaned}"`;
+              })()}
             </h1>
 
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-gray-600 my-8 gap-4">
@@ -246,7 +262,7 @@ const SingleQuote = () => {
             <div className="text-blue-700 leading-relaxed whitespace-pre-line text-2xl font-serif">
               <h6 className="mt-4 mb-4 text-xl font-semibold text-gray-700 flex items-center">
                 <UserRoundPen className="mr-2" />
-                Quote Explanation By Author!!!!!!
+                Quote Explanation By Author
               </h6>
               {content}
             </div>

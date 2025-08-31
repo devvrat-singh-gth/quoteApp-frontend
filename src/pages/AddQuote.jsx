@@ -53,7 +53,7 @@ const AddQuote = function () {
   }
 
   return (
-    <main className="max-w-2xl py-4 mx-auto bg-emerald-200 dark:bg-gray-800">
+    <main className="max-w-2xl py-4 mx-auto bg-emerald-100 dark:bg-gray-800">
       <h1 className="flex items-center justify-center gap-2 text-4xl font-bold mb-8 text-center text-gray-700 dark:text-gray-200">
         Share a New Quote <SquarePen width={32} height={32} />
       </h1>
@@ -74,7 +74,7 @@ const AddQuote = function () {
             id="quote"
             required
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-transparent dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 dark:focus:ring-blue-500"
-            placeholder="Enter the main quote here"
+            placeholder="Enter the main quote here (Do not add '....' )"
             value={quote}
             onChange={(e) => setQuote(e.target.value)}
           />
@@ -166,7 +166,7 @@ const AddQuote = function () {
             disabled={isLoading}
             className="relative inline-block px-8 py-3 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300 disabled:opacity-50"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-600 to-fuchsia-500 rounded-lg blur opacity-80 group-hover:opacity-100 transition duration-300"></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-black via-green-600 to-lime-500 rounded-lg blur opacity-80 group-hover:opacity-100 transition duration-300"></span>
             <span className="absolute top-0 left-0 w-full h-full border-2 border-transparent group-hover:border-pink-500 rounded-lg animate-neon-border"></span>
             <span className="relative z-10">
               {isLoading ? "Publishing..." : "Publish Quote"}

@@ -40,7 +40,7 @@ const AllQuotes = function () {
       <section>
         {isLoading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full mt-20 h-20 w-20 border-b-2 border-pink-800 mx-auto"></div>
+            <div className="animate-spin rounded-full mt-20 h-20 w-20 border-b-4 border-green-800 mx-auto"></div>
           </div>
         ) : quotes.length > 0 ? (
           <div
