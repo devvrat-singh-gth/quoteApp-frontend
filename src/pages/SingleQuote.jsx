@@ -59,7 +59,7 @@ const SingleQuote = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [actionType, setActionType] = useState(null); // "edit" or "delete"
   const [error, setError] = useState("");
-  const [enteredPassword, setEnteredPassword] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState(undefined);
   const [yourQuotes, setYourQuotes] = useState([]);
 
   // Load yourQuotes from localStorage once on mount
@@ -94,7 +94,7 @@ const SingleQuote = () => {
     fetchSingleQuote();
   }, [id, navigate, enteredPassword]);
 
-  // Compute if current quote is in yourQuotes list
+  // Check if current quote is in yourQuotes list
   const isInYourQuotes = yourQuotes.some((q) => q === id || q._id === id);
 
   function openPasswordModal(type) {
@@ -102,6 +102,8 @@ const SingleQuote = () => {
       if (type === "edit") {
         navigate(`/edit-quote/${id}`);
       } else if (type === "delete") {
+        // Use empty string to indicate no password needed for delete
+        setEnteredPassword("");
         setShowConfirmModal(true);
       }
       return;
@@ -139,15 +141,23 @@ const SingleQuote = () => {
 
   async function handleConfirmDelete() {
     try {
+      const config = {};
+
+      // Always send password param if enteredPassword is set (including empty string)
+      if (enteredPassword !== undefined && enteredPassword !== null) {
+        config.params = { password: enteredPassword };
+      }
+
+      console.log("Deleting quote with config:", config);
+
       await axios.delete(
         `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
-        {
-          params: { password: enteredPassword },
-        }
+        config
       );
       toast.success("Quote Deleted!");
-      navigate("/quotes");
-    } catch {
+      navigate("/your-quotes");
+    } catch (error) {
+      console.error("Delete error:", error.response || error.message || error);
       toast.error("Error deleting quote");
     } finally {
       setShowConfirmModal(false);
