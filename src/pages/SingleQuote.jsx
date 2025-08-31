@@ -61,7 +61,7 @@ const SingleQuote = () => {
   const [error, setError] = useState("");
   const [enteredPassword, setEnteredPassword] = useState(undefined);
   const [yourQuotes, setYourQuotes] = useState([]);
-  const [justDeleted, setJustDeleted] = useState(false); // NEW FLAG
+  const [justDeleted, setJustDeleted] = useState(false);
 
   // Load yourQuotes from localStorage once on mount
   useEffect(() => {
@@ -73,8 +73,10 @@ const SingleQuote = () => {
     }
   }, []);
 
-  // Fetch single quote, refetch if id, enteredPassword or justDeleted changes
+  // Fetch single quote - skip if justDeleted is true
   useEffect(() => {
+    if (justDeleted) return; // Skip fetching after deletion
+
     async function fetchSingleQuote() {
       setIsLoading(true);
       try {
@@ -85,11 +87,8 @@ const SingleQuote = () => {
         const response = await axios.get(url);
         setQuote(response.data);
       } catch {
-        if (!justDeleted) {
-          // Prevent redirect after deletion
-          toast.error("Quote not found or incorrect password!");
-          navigate("/quotes");
-        }
+        toast.error("Quote not found or incorrect password!");
+        navigate("/quotes");
       } finally {
         setIsLoading(false);
       }
@@ -106,7 +105,6 @@ const SingleQuote = () => {
       if (type === "edit") {
         navigate(`/edit-quote/${id}`);
       } else if (type === "delete") {
-        // Use empty string to indicate no password needed for delete
         setEnteredPassword("");
         setShowConfirmModal(true);
       }
@@ -146,20 +144,16 @@ const SingleQuote = () => {
   async function handleConfirmDelete() {
     try {
       const config = {};
-
-      // Always send password param if enteredPassword is set (including empty string)
       if (enteredPassword !== undefined && enteredPassword !== null) {
         config.params = { password: enteredPassword };
       }
-
-      console.log("Deleting quote with config:", config);
 
       await axios.delete(
         `https://quoteapp-backend-1.onrender.com/api/v1/quotes/${id}`,
         config
       );
       toast.success("Quote Deleted!");
-      setJustDeleted(true); // Prevent redirect in fetch effect
+      setJustDeleted(true);
       navigate("/your-quotes");
     } catch (error) {
       console.error("Delete error:", error.response || error.message || error);
@@ -167,6 +161,11 @@ const SingleQuote = () => {
     } finally {
       setShowConfirmModal(false);
     }
+  }
+
+  if (justDeleted) {
+    // Stop rendering component after deletion to prevent unwanted re-fetch or redirect
+    return null;
   }
 
   if (isLoading) {
