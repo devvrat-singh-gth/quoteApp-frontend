@@ -45,10 +45,10 @@ const HomePage = ({ navHeight }) => {
             <div className="w-full max-w-2xl">
               <h1 className="text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-amber-800 gradient-text-glow">
                 <Flower2 />
-                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-red-800 font-serif">
+                <span className="text-xl sm:text-3xl md:text-5xl lg:text-6xl text-red-800 font-serif">
                   Welcome to{" "}
                 </span>
-                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-red-800 font-serif">
+                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-blue-800 font-serif">
                   QuoteVault
                 </span>
               </h1>
