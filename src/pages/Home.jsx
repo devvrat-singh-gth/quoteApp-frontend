@@ -35,7 +35,7 @@ const HomePage = ({ navHeight }) => {
     >
       {/* Hero Section */}
       <section
-        className="m-4 sm:m-8 md:m-12 rounded-lg pt-4 pb-6 px-4 md:px-6 border-4 border-black shadow-md static-gradient-bg"
+        className="m-4 sm:m-8 md:m-12 rounded-lg pt-4 pb-6 px-4 sm:pt-10 sm:pb-12 sm:px-6 border-4 border-black shadow-md static-gradient-bg"
         style={{ minHeight: "400px" }}
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full ">
@@ -44,7 +44,9 @@ const HomePage = ({ navHeight }) => {
             <div className="w-full max-w-2xl">
               <h1 className="text-3xl md:text-5xl font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow whitespace-nowrap">
                 Welcome to{" "}
-                <span className="text-blue-800 font-serif">QuoteVault</span>
+                <span className="text-blue-800 text-2xl lg:text-6xl font-serif">
+                  QuoteVault
+                </span>
               </h1>
 
               <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
@@ -67,7 +69,7 @@ const HomePage = ({ navHeight }) => {
 
           {/* Quote of the Day */}
           {recentQuotes.length > 0 && (
-            <div className="flex-1 flex flex-col justify-start items-center max-w-lg lg:max-w-md w-full mx-auto mt-0 md:mt-8 lg:mt-5">
+            <div className="flex-1 flex flex-col justify-start items-center max-w-lg lg:max-w-md w-full mx-auto mt-0 md:mt-8 lg:mt-0">
               <h2 className="font-bold text-3xl text-black dark:text-white md:text-4xl font-serif mb-2 px-10 underline italic gradient-text-glow text-center lg:text-left">
                 Quote of the Day
               </h2>
