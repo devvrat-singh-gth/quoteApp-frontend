@@ -40,11 +40,11 @@ const HomePage = ({ navHeight }) => {
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full ">
           {/* Hero Text Container */}
-          <div className="flex-1 flex flex-col items-center text-left px-4 sm:px-6">
+          <div className="flex-1 flex flex-col items-center text-center px-4 sm:px-6">
             <div className="w-full max-w-2xl">
-              <h1 className="text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow">
                 Welcome to{" "}
-                <span className="text-3xl md:text-5xl lg:text-6xl text-blue-800 font-serif">
+                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-blue-800 font-serif">
                   QuoteVault
                 </span>
               </h1>
