@@ -4,6 +4,7 @@ import QuoteCarousel from "../components/QuoteCarousel";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Flower2 } from "lucide-react";
 import "../App.css";
 
 const HomePage = ({ navHeight }) => {
@@ -43,10 +44,13 @@ const HomePage = ({ navHeight }) => {
           <div className="flex-1 flex flex-col items-center text-center px-4 sm:px-6">
             <div className="w-full max-w-2xl">
               <h1 className="text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-amber-800 gradient-text-glow">
+                <Flower2 />
                 <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-red-800 font-serif">
                   Welcome to{" "}
                 </span>
-                QuoteVault
+                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-red-800 font-serif">
+                  QuoteVault
+                </span>
               </h1>
 
               <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed sm:text-left">
