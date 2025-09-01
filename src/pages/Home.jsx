@@ -30,34 +30,34 @@ const HomePage = ({ navHeight }) => {
 
   return (
     <main
-      style={{ paddingTop: `clamp(3.5rem, ${navHeight}px, 7rem)` }}
+      style={{ paddingTop: `clamp(2rem, ${navHeight}px, 2rem)` }}
       className="min-h-screen px-4 py-5 md:px-8 transition-all duration-300 bg-emerald-200 dark:bg-gray-900"
     >
       {/* Hero Section */}
       <section
-        className="m-4 sm:m-8 md:m-12 rounded-lg p-6 md:p-8 border-4 border-black shadow-md static-gradient-bg"
+        className="m-4 sm:m-8 md:m-12 rounded-lg pt-4 pb-6 px-4 md:px-6 border-4 border-black shadow-md static-gradient-bg"
         style={{ minHeight: "400px" }}
       >
-        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full pt-6">
+        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full ">
           {/* Hero Text Container */}
-          <div className="flex-1 flex flex-col items-start text-left mt-5">
+          <div className="flex-1 flex flex-col items-start text-left">
             <div className="w-full max-w-2xl">
-              <h1 className="text-3xl md:text-6xl font-serif mb-4 text-red-800 gradient-text-glow lg:whitespace-nowrap">
+              <h1 className="text-3xl md:text-5xl font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow whitespace-nowrap">
                 Welcome to{" "}
                 <span className="text-blue-800 font-serif">QuoteVault</span>
               </h1>
 
-              <p className="text-xl font-medium py-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+              <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
                 A collection of inspiring, thoughtful, and powerful quotes
                 shared by you—each one a beacon of insight, reflection, and
                 wisdom...
               </p>
-              <p className="text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+              <p className="hidden md:block text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
                 These quotes are not only words but also reflections of life's
                 deepest experiences. Each one is a window into the minds of
                 thinkers, dreamers, and visionaries who have shaped our world.
               </p>
-              <p className="text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+              <p className="hidden md:block text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
                 Whether these words come from the past or are shared in the
                 present moment, they offer valuable lessons for navigating our
                 personal and collective journeys.
@@ -67,11 +67,19 @@ const HomePage = ({ navHeight }) => {
 
           {/* Quote of the Day */}
           {recentQuotes.length > 0 && (
-            <div className="flex-1 flex flex-col justify-start items-center max-w-md w-full mx-auto mt-6 lg:mt-0">
+            <div className="flex-1 flex flex-col justify-start items-center max-w-lg lg:max-w-md w-full mx-auto mt-0 md:mt-8 lg:mt-5">
               <h2 className="font-bold text-3xl text-black dark:text-white md:text-4xl font-serif mb-2 px-10 underline italic gradient-text-glow text-center lg:text-left">
                 Quote of the Day
               </h2>
-              <div className="bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-md rounded-lg p-6 shadow-lg w-full">
+              <div
+                className="
+    bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-md rounded-lg 
+    p-4 shadow-lg 
+    w-[105%] max-w-none min-h-[450px] 
+    sm:w-full sm:max-w-4xl sm:min-h-[auto]
+    flex items-center justify-center
+  "
+              >
                 <QuoteCard quote={recentQuotes[1]} />
               </div>
             </div>
