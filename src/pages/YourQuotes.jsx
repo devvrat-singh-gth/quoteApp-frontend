@@ -47,7 +47,7 @@ const YourQuotes = () => {
           className="relative inline-block px-8 py-6 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"
         >
           <span className="absolute inset-0 bg-gradient-to-r from-black via-green-700 to-lime-700 rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
-          <span className="relative z-10 text-left gradient-text-glow whitespace-nowrap">
+          <span className="relative z-10 sm:text-center gradient-text-glow whitespace-nowrap">
             New Quote
           </span>
           <span className="absolute top-0 left-0 w-full h-full border-2 border-transparent group-hover:border-green-500 rounded-lg animate-neon-border"></span>
