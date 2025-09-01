@@ -40,11 +40,11 @@ const HomePage = ({ navHeight }) => {
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full ">
           {/* Hero Text Container */}
-          <div className="flex-1 flex flex-col items-start text-left">
+          <div className="flex-1 flex flex-col items-start text-left px-4 sm:px-6">
             <div className="w-full max-w-2xl">
-              <h1 className="text-xl sm:text-2xl md:text-5xl font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow whitespace-nowrap">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow whitespace-nowrap">
                 Welcome to{" "}
-                <span className="text-xl sm:text-2xl md:text-5xl lg:text-6xl text-blue-800 font-serif">
+                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-blue-800 font-serif">
                   QuoteVault
                 </span>
               </h1>
@@ -70,7 +70,7 @@ const HomePage = ({ navHeight }) => {
           {/* Quote of the Day */}
           {recentQuotes.length > 0 && (
             <div className="flex-1 flex flex-col justify-start items-center max-w-lg lg:max-w-md w-full mx-auto mt-0 md:mt-8 lg:mt-0">
-              <h2 className="font-bold text-3xl text-black dark:text-white md:text-4xl font-serif mb-2 px-10 underline italic gradient-text-glow text-center lg:text-left">
+              <h2 className="font-bold text-3xl text-black dark:text-white md:text-4xl font-serif mb-2 px-10 underline italic gradient-text-glow text-center lg:text-left whitespace-nowrap">
                 Quote of the Day
               </h2>
               <div
