@@ -37,7 +37,7 @@ const YourQuotes = () => {
     <main className="min-h-screen m-auto px-4 py-8 bg-emerald-200 dark:bg-gray-800">
       <div className="flex flex-row justify-between items-center mb-8">
         <h1 className="px-1 font-bold text-gray-800 dark:text-white text-left">
-          <span className="text-4xl md:text-6xl font-serif whitespace-nowrap">
+          <span className="text-4xl md:text-6xl font-serif lg:whitespace-nowrap">
             Your Collection
           </span>
         </h1>
