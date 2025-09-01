@@ -43,7 +43,7 @@ const HomePage = ({ navHeight }) => {
           {/* Hero Text Container */}
           <div className="flex-1 flex flex-col items-center text-center px-4 sm:px-6">
             <div className="w-full max-w-2xl">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-amber-400 gradient-text-glow">
+              <h1 className="flex items-center text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-amber-400 gradient-text-glow">
                 <Flower2 className="mr-2" />
                 <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-red-800 font-serif">
                   Welcome to{" "}
