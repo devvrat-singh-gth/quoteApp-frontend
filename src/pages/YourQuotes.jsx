@@ -35,24 +35,26 @@ const YourQuotes = () => {
 
   return (
     <main className="min-h-screen m-auto px-4 py-8 bg-emerald-200 dark:bg-gray-800">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="px-1 font-bold text-gray-800 dark:text-white">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 gap-4 sm:gap-0">
+        <h1 className="px-1 font-bold text-gray-800 dark:text-white text-center sm:text-left">
           <span className="text-4xl md:text-6xl font-serif">
             Your Collection
           </span>
         </h1>
 
-        <Link
-          to="/add-quote"
-          className="relative inline-block px-8 py-6 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"
-        >
-          <span className="absolute inset-0 bg-gradient-to-r from-black via-green-700 to-lime-700 rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
-          <span className="relative z-10 w-full text-center gradient-text-glow block whitespace-nowrap">
-            New Quote
-          </span>
-
-          <span className="absolute top-0 left-0 w-full h-full border-2 border-transparent group-hover:border-green-500 rounded-lg animate-neon-border"></span>
-        </Link>
+        {/* Center on mobile, right on larger screens */}
+        <div className="w-full flex justify-center sm:justify-end">
+          <Link
+            to="/add-quote"
+            className="relative inline-block px-8 py-6 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-black via-green-700 to-lime-700 rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
+            <span className="relative z-10 w-full text-center gradient-text-glow block whitespace-nowrap">
+              New Quote
+            </span>
+            <span className="absolute top-0 left-0 w-full h-full border-2 border-transparent group-hover:border-green-500 rounded-lg animate-neon-border"></span>
+          </Link>
+        </div>
       </div>
 
       {isLoading ? (
