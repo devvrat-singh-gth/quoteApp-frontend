@@ -42,9 +42,9 @@ const HomePage = ({ navHeight }) => {
           {/* Hero Text Container */}
           <div className="flex-1 flex flex-col items-start text-left">
             <div className="w-full max-w-2xl">
-              <h1 className="text-3xl md:text-5xl font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow whitespace-nowrap">
+              <h1 className="text-xl sm:text-2xl md:text-5xl font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow whitespace-nowrap">
                 Welcome to{" "}
-                <span className="text-blue-800 text-3xl lg:text-6xl font-serif">
+                <span className="text-xl sm:text-2xl md:text-5xl lg:text-6xl text-blue-800 font-serif">
                   QuoteVault
                 </span>
               </h1>
