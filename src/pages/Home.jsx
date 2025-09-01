@@ -44,15 +44,15 @@ const HomePage = ({ navHeight }) => {
           <div className="flex-1 flex flex-col items-center text-center px-4 sm:px-6">
             <div className="w-full max-w-2xl">
               <h1 className="flex items-center text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-amber-400 gradient-text-glow">
-                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-5xl text-red-800 font-serif">
-                  Welcome to{" "}
+                <span className="text-2xl sm:text-3xl md:text-5xl lg:text-5xl text-red-800 font-serif mr-2">
+                  Welcome to
                 </span>
                 <span className="text-3xl sm:text-3xl md:text-5xl lg:text-5xl text-blue-800 font-serif">
                   QuoteVault
                 </span>
               </h1>
 
-              <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed sm:text-left">
+              <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed text-center sm:text-left">
                 A collection of inspiring, thoughtful, and powerful quotes
                 shared by you—each one a beacon of insight, reflection, and
                 wisdom...
