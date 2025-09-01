@@ -43,10 +43,10 @@ const HomePage = ({ navHeight }) => {
           <div className="flex-1 flex flex-col items-center text-center px-4 sm:px-6">
             <div className="w-full max-w-2xl">
               <h1 className="text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-red-800 gradient-text-glow">
-                Welcome to{" "}
                 <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-blue-800 font-serif">
-                  QuoteVault
+                  Welcome to{" "}
                 </span>
+                QuoteVault
               </h1>
 
               <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed sm:text-left">
