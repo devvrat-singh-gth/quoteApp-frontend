@@ -49,17 +49,17 @@ const HomePage = ({ navHeight }) => {
                 </span>
               </h1>
 
-              <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+              <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed text-left">
                 A collection of inspiring, thoughtful, and powerful quotes
                 shared by you—each one a beacon of insight, reflection, and
                 wisdom...
               </p>
-              <p className="hidden md:block text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+              <p className="hidden md:block text-xl text-left font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
                 These quotes are not only words but also reflections of life's
                 deepest experiences. Each one is a window into the minds of
                 thinkers, dreamers, and visionaries who have shaped our world.
               </p>
-              <p className="hidden md:block text-xl font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
+              <p className="hidden md:block text-xl text-left font-medium py-1 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed">
                 Whether these words come from the past or are shared in the
                 present moment, they offer valuable lessons for navigating our
                 personal and collective journeys.
