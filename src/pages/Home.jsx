@@ -49,7 +49,7 @@ const HomePage = ({ navHeight }) => {
                 </span>
               </h1>
 
-              <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed text-left">
+              <p className="font-medium pt-4 text-gray-800 dark:text-gray-200 gradient-text-glow leading-relaxed sm:text-left">
                 A collection of inspiring, thoughtful, and powerful quotes
                 shared by you—each one a beacon of insight, reflection, and
                 wisdom...
