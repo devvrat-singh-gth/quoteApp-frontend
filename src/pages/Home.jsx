@@ -4,11 +4,29 @@ import QuoteCarousel from "../components/QuoteCarousel";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Flower2 } from "lucide-react";
 import "../App.css";
+
+// === RANDOM FUNCTION UTILITIES ===
+function seededRandom(seed) {
+  let x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+function getQuoteOfTheDay(quotes) {
+  if (!quotes || quotes.length === 0) return null;
+
+  const today = new Date();
+  const seed =
+    today.getFullYear() * 10000 +
+    (today.getMonth() + 1) * 100 +
+    today.getDate(); // e.g., 20250902
+  const index = Math.floor(seededRandom(seed) * quotes.length);
+  return quotes[index];
+}
 
 const HomePage = ({ navHeight }) => {
   const [recentQuotes, setRecentQuotes] = useState([]);
+  const [quoteOfTheDay, setQuoteOfTheDay] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -17,7 +35,11 @@ const HomePage = ({ navHeight }) => {
         const response = await axios.get(
           "https://quoteapp-backend-1.onrender.com/api/v1/quotes"
         );
-        setRecentQuotes(response.data.slice(0, 10));
+        const allQuotes = response.data;
+
+        setRecentQuotes(allQuotes.slice(0, 10)); // Show only 10 in Recent
+        const qotd = getQuoteOfTheDay(allQuotes);
+        setQuoteOfTheDay(qotd);
       } catch (error) {
         console.error(error);
         toast.error("Failed to fetch recent quotes!");
@@ -40,7 +62,7 @@ const HomePage = ({ navHeight }) => {
         style={{ minHeight: "400px" }}
       >
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 h-full ">
-          {/* Hero Text Container */}
+          {/* Welcome Text */}
           <div className="flex-1 flex flex-col items-center text-center px-4 sm:px-6">
             <div className="w-full max-w-2xl">
               <h1 className="flex items-center text-2xl sm:text-3xl md:text-5xl whitespace-nowrap font-serif mb-4 md:mb-10 text-amber-400 gradient-text-glow">
@@ -71,21 +93,22 @@ const HomePage = ({ navHeight }) => {
           </div>
 
           {/* Quote of the Day */}
-          {recentQuotes.length > 0 && (
+          {quoteOfTheDay && (
             <div className="flex-1 flex flex-col justify-start items-center max-w-lg lg:max-w-md w-full mx-auto mt-0 md:mt-8 lg:mt-0">
               <h2 className="font-bold text-3xl text-black dark:text-white md:text-4xl font-serif mb-2 px-10 underline italic gradient-text-glow text-center lg:text-left whitespace-nowrap">
                 Quote of the Day
               </h2>
               <div
                 className="
-    bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-md rounded-lg 
-    p-4 shadow-lg 
-    w-[105%] max-w-none min-h-[450px] 
-    sm:w-full sm:max-w-4xl sm:min-h-[auto]
-    flex items-center justify-center
-  "
+  bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-md 
+  rounded-lg p-4 shadow-lg 
+  w-[105%] max-w-none 
+  sm:w-full sm:max-w-4xl 
+  max-md:min-h-[450px] 
+  flex items-center justify-center
+"
               >
-                <QuoteCard quote={recentQuotes[1]} />
+                <QuoteCard quote={quoteOfTheDay} />
               </div>
             </div>
           )}
@@ -130,7 +153,7 @@ const HomePage = ({ navHeight }) => {
               to="/quotes"
               className="relative inline-block px-6 py-3 text-white font-semibold rounded-lg overflow-hidden group transition-all duration-300"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-black via-green-700 to-lime-700  rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-black via-green-700 to-lime-700 rounded-lg blur opacity-90 group-hover:opacity-100 transition duration-200"></span>
               <span className="relative z-10 gradient-text-glow">
                 View All Quotes
               </span>
