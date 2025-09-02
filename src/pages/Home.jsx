@@ -50,6 +50,23 @@ const HomePage = ({ navHeight }) => {
 
     fetchRecentQuotes();
   }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const today = new Date();
+      const seed =
+        today.getFullYear() * 10000 +
+        (today.getMonth() + 1) * 100 +
+        today.getDate();
+
+      const currentQuote = getQuoteOfTheDay(recentQuotes);
+      // Optional: Avoid unnecessary re-render
+      if (currentQuote?.text !== quoteOfTheDay?.text) {
+        setQuoteOfTheDay(currentQuote);
+      }
+    }, 60 * 1000); // Check every minute
+
+    return () => clearInterval(interval); // Cleanup
+  }, [recentQuotes, quoteOfTheDay]);
 
   return (
     <main
