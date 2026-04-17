@@ -32,7 +32,7 @@ It allows users to explore, add, edit, and manage quotes with a clean and modern
 
 ## 📸 Preview
 
-![App Screenshot](./image.png)
+![App Screenshot](./image1.png)
 
 ---
 
