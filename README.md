@@ -32,7 +32,7 @@ It allows users to explore, add, edit, and manage quotes with a clean and modern
 
 ## 📸 Preview
 
-![App Screenshot](./image.png)
+<img src="./image1.png" width="300" height="200" style="object-fit: cover; object-position: center;">
 
 ---
 
